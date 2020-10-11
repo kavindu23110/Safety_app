@@ -1,4 +1,5 @@
 ﻿
+using Safety_app.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,7 +12,7 @@ namespace Safety_app.Views.MainViews.Login
         public index()
         {
             InitializeComponent();
-
+            BindingContext=new LoginViewModel();
 
         }
 

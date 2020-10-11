@@ -14,7 +14,7 @@ namespace Safety_app
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            MainPage = new Safety_app.Views.MainViews.Login.index();
         }
 
         protected override void OnStart()

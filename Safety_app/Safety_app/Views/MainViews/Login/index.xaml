@@ -1,13 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behavior="clr-namespace:Safety_app.Validation.Behaviors"
+             xmlns:vm="clr-namespace:Safety_app.ViewModels"
              x:Class="Safety_app.Views.MainViews.Login.index">
     <ContentPage.Content>
         <StackLayout>
        
             <Image Source="medic.png" WidthRequest="200" Margin="50" VerticalOptions="Center" Opacity="0.5"/>
-            <Entry IsPassword="True" x:Name="password" Margin="50,10,50,0" Placeholder="PIN CODE"></Entry>
-            <Button Text="Login" Margin="100,10,100,0"/>
+            <Entry IsPassword="True"  Text="{Binding user.password }"  x:Name="password" Margin="50,10,50,0" Placeholder="PIN CODE">
+                <Entry.Behaviors>
+                    
+                    <behavior:PasswordValidationBehavior Errorlabel="Error" Message="testm"></behavior:PasswordValidationBehavior>
+                    <behavior:NullValidationbehavior Errorlabel="Error" Message="testedlll"></behavior:NullValidationbehavior>
+                    
+                </Entry.Behaviors>
+            </Entry>
+            <Label x:Name="Error" Margin="50,10,50,0" FontSize="20" TextType="Text" HorizontalOptions="CenterAndExpand" TextColor="Red"></Label>
+            <Button Text="Login"   Command="{Binding Source={RelativeSource AncestorType={x:Type vm:LoginViewModel}}, Path=LoginCommand}"	 Margin="100,10,100,0"/>
            
         </StackLayout>
     </ContentPage.Content>
