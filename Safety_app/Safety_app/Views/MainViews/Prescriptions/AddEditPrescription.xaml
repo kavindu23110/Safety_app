@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Safety_app.Views.MainViews.Prescriptions.AddEditPrescription"
+             xmlns:local="clr-namespace:Safety_app.ViewModels.Prescriptions"
+             Title="AddEditPrescription">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="save"  Command="{Binding Source={RelativeSource AncestorType={x:Type local:AddEditPrescriptionViewModel}}, Path=savePrescription}"	  Order="Primary" Priority="0" />
+
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Label Text="Doctor name"
+                VerticalOptions="Center" 
+                HorizontalOptions="StartAndExpand" />
+            <Entry x:Name="Doctorname" x:DataType="x:String"></Entry>
+            <Label Text="startdate"
+                VerticalOptions="Center" 
+                HorizontalOptions="StartAndExpand" />
+            <DatePicker x:Name="startdate" ></DatePicker>
+        
+            <Label Text="enddate"
+                VerticalOptions="Center" 
+                HorizontalOptions="StartAndExpand" />
+            <DatePicker x:Name="endtdate" ></DatePicker>
+            <Button Text="ADD Drugs +"  Command="{Binding Source={RelativeSource AncestorType={x:Type local:AddEditPrescriptionViewModel}}, Path=ADDEditDrugs}"></Button>
+            <Button Text="ADD SCHEDULES +"  Command="{Binding Source={RelativeSource AncestorType={x:Type local:AddEditPrescriptionViewModel}}, Path=ADDEditSchedules}"></Button>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

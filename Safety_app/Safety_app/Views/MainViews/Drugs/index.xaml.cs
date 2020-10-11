@@ -1,5 +1,4 @@
-﻿using Safety_app.ViewModels.Prescriptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Safety_app.Views.MainViews.Prescriptions
+namespace Safety_app.Views.MainViews.Drugs
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class index : ContentPage
@@ -16,7 +15,7 @@ namespace Safety_app.Views.MainViews.Prescriptions
         public index()
         {
             InitializeComponent();
-            BindingContext = new Safety_app.ViewModels.Prescriptions.indexViewModel();
+            BindingContext = new Safety_app.ViewModels.Drugs.indexViewModel();
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
-using Safety_app.Models;
 using Xamarin.Forms;
 
 namespace Safety_app.ViewModels

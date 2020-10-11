@@ -2,7 +2,8 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Safety_app.Views.MainViews.Schedules
+
+namespace Safety_app.Views.MainViews.Login
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class index : ContentPage
@@ -10,7 +11,10 @@ namespace Safety_app.Views.MainViews.Schedules
         public index()
         {
             InitializeComponent();
-            BindingContext = new Safety_app.ViewModels.Schedules.indexViewmodel();
+
+
         }
+
+
     }
 }

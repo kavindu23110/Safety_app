@@ -1,7 +1,4 @@
 ﻿using Safety_app.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace Safety_app.ViewModels

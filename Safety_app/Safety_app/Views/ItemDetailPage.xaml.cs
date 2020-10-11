@@ -1,6 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Safety_app.ViewModels;
 using Xamarin.Forms;
-using Safety_app.ViewModels;
 
 namespace Safety_app.Views
 {
