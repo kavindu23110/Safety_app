@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Safety_app.Models;
-using Safety_app.Validators;
 using Safety_app.Views;
 using Xamarin.Forms;
 
@@ -14,7 +13,7 @@ namespace Safety_app.ViewModels
         public LoginViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
-            _validator = new Uservalidator();
+         
             user = new User();
         }
 
