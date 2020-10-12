@@ -3,6 +3,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Safety_app.Services;
 using Safety_app.Views;
+using Safety_app.Data;
+using System.IO;
+using Safety_app.Data.DatabaseOperation;
 
 namespace Safety_app
 {
@@ -15,6 +18,20 @@ namespace Safety_app
 
             DependencyService.Register<MockDataStore>();
             MainPage = new Safety_app.Views.MainViews.Login.index();
+        }
+
+        static DataContext database;
+
+        public static DataContext Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new DataContext(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "sqlite.db3"));
+                }
+                return database;
+            }
         }
 
         protected override void OnStart()

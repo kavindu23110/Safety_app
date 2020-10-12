@@ -13,7 +13,7 @@ namespace Safety_app.ViewModels
         public LoginViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
-         
+            App.Database.GetDrugOperator();
             user = new User();
         }
 
