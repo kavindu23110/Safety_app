@@ -19,7 +19,8 @@ namespace Safety_app.ViewModels.Prescriptions
 
         private async void OnaddnewPrescription(object obj)
         {
-            await Shell.Current.GoToAsync($"{nameof(AddEditPrescription)}");
+         await Shell.Current.GoToAsync($"{nameof(AddEditPrescription)}");
+        
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Safety_app
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             Routing.RegisterRoute(nameof(AddEditPrescription), typeof(AddEditPrescription));
             Routing.RegisterRoute(nameof(AddEditSchedule), typeof(AddEditSchedule));
+            Routing.RegisterRoute(nameof(Views.MainViews.Drugs.AddNewDrug), typeof(Views.MainViews.Drugs.AddNewDrug));
             Routing.RegisterRoute(nameof(Safety_app.Views.MainViews.Drugs.index), typeof(Safety_app.Views.MainViews.Drugs.index));
         }
 

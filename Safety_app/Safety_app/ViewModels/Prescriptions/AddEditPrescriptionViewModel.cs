@@ -1,4 +1,6 @@
-﻿using Safety_app.Views.MainViews.Prescriptions;
+﻿using Safety_app.Helpers;
+using Safety_app.Models;
+using Safety_app.Views.MainViews.Prescriptions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +11,8 @@ namespace Safety_app.ViewModels.Prescriptions
 {
     public class AddEditPrescriptionViewModel
     {
+        public Prescription prescription { get; set; }
+
         public ICommand savePrescription { get; }
         public ICommand ADDEditDrugs { get; private set; }
         public ICommand ADDEditSchedules { get; private set; }
@@ -19,15 +23,19 @@ namespace Safety_app.ViewModels.Prescriptions
             savePrescription = new Command(OnsavePrescription);
             ADDEditDrugs = new Command(onAddDrugsAsync);
             ADDEditSchedules = new Command(onAddEditSchedules);
+            prescription = new Prescription();
         }
 
         private async void onAddEditSchedules(object obj)
         {
+            StateManager.StoreProperties("prescription", prescription);
             await Shell.Current.GoToAsync($"{nameof(Safety_app.Views.MainViews.Schedules.index)}");
+
         }
 
         private async void onAddDrugsAsync(object obj)
         {
+            StateManager.StoreProperties("prescription", prescription);
             await Shell.Current.GoToAsync($"{nameof(Safety_app.Views.MainViews.Drugs.index)}");
         }
 

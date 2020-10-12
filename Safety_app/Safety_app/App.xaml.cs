@@ -6,6 +6,8 @@ using Safety_app.Views;
 using Safety_app.Data;
 using System.IO;
 using Safety_app.Data.DatabaseOperation;
+using Safety_app.Models;
+using Safety_app.Helpers;
 
 namespace Safety_app
 {
@@ -17,8 +19,10 @@ namespace Safety_app
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new Safety_app.Views.MainViews.Login.index();
+
+            MainPage = new AppShell();
         }
+  
 
         static DataContext database;
 

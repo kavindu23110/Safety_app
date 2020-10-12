@@ -58,8 +58,11 @@ namespace Safety_app.Validation.BaseBehaviors
             Button Buttons = ((Entry)sender).FindByName<Button>(ButtonName);
             if (isValid)
             {
-                errorLabel.IsVisible = false;
-                errorLabel.Text = string.Empty;
+                if (errorLabel != null)
+                {
+                    errorLabel.IsVisible = false;
+                    errorLabel.Text = string.Empty;
+                }
               
                 if (Buttons != null)
                     Buttons.IsEnabled = false && Buttons.IsEnabled;
@@ -67,8 +70,11 @@ namespace Safety_app.Validation.BaseBehaviors
             }
             else
             {
-                errorLabel.IsVisible = true;
-                errorLabel.Text = (string)GetValue(ErrorMessage);
+                if (errorLabel != null)
+                {
+                    errorLabel.IsVisible = true;
+                    errorLabel.Text = (string)GetValue(ErrorMessage);
+                }
 
                 if (Buttons != null)
                     Buttons.IsEnabled = true && Buttons.IsEnabled;
