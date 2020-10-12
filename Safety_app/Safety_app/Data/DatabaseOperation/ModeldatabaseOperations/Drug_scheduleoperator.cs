@@ -8,21 +8,22 @@ using System.Threading.Tasks;
 
 namespace Safety_app.Data.DatabaseOperation.ModeldatabaseOperations
 {
-    public class DrugOperator : DatabaseOperation<Drugs>
+    public class Drug_scheduleOperator : DatabaseOperation<Drug_Schedule>
     {
-     
 
-        public DrugOperator(ref SQLiteAsyncConnection database) : base(ref database)
+
+        public Drug_scheduleOperator(ref SQLiteAsyncConnection database) : base(ref database)
         {
             _database.CreateTableAsync<Drugs>().Wait();
         }
-        public override Task<List<Drugs>> GetAsync()
+
+        public override Task<List<Drug_Schedule>> GetAsync()
         {
-            return _database.Table<Drugs>().ToListAsync();
+            return _database.Table<Drug_Schedule>().ToListAsync();
         }
-        public override Task<Drugs> FindAsync(Expression<Func<Drugs, bool>> predicate)
+        public override Task<Drug_Schedule> FindAsync(Expression<Func<Drug_Schedule, bool>> predicate)
         {
-            return _database.Table<Drugs>()
+            return _database.Table<Drug_Schedule>()
                             .Where(predicate)
                             .FirstOrDefaultAsync();
         }

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Safety_app.Views.MainViews.Prescriptions.AddEditPrescription"
              xmlns:local="clr-namespace:Safety_app.ViewModels.Prescriptions"
+              xmlns:behavior="clr-namespace:Safety_app.Validation.Behaviors"
              Title="AddEditPrescription">
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="save"  Command="{Binding Source={RelativeSource AncestorType={x:Type local:AddEditPrescriptionViewModel}}, Path=savePrescription}"	  Order="Primary" Priority="0" />
@@ -13,11 +14,17 @@
             <Label Text="Doctor name"
                 VerticalOptions="Center" 
                 HorizontalOptions="StartAndExpand" />
-            <Entry x:Name="Doctorname" x:DataType="x:String"></Entry>
+            <Entry x:Name="Doctorname" x:DataType="x:String">
+                <Entry.Behaviors>
+                    <behavior:NullValidationbehavior Errorlabel=""></behavior:NullValidationbehavior>
+                </Entry.Behaviors>
+            </Entry>
             <Label Text="startdate"
                 VerticalOptions="Center" 
                 HorizontalOptions="StartAndExpand" />
-            <DatePicker x:Name="startdate" ></DatePicker>
+            <DatePicker x:Name="startdate" >
+               
+            </DatePicker>
         
             <Label Text="enddate"
                 VerticalOptions="Center" 

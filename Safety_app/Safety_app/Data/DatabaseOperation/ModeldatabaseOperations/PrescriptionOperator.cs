@@ -12,7 +12,7 @@ namespace Safety_app.Data.DatabaseOperation.ModeldatabaseOperations
     {
         public PrescriptionOperator(ref SQLiteAsyncConnection database):base(ref database)
         {
-
+            _database.CreateTableAsync<Prescriptions>().Wait();
         }
         public override Task<List<Prescriptions>> GetAsync()
         {

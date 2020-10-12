@@ -1,11 +1,14 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Safety_app.Models
 {
-  public  class Drugs
+  public  class Drugs : BaseModel
     {
-        public int MyProperty { get; set; }
+        public String Name { get; set; }
+        public String Notes { get; set; }
+
     }
 }

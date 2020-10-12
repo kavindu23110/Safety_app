@@ -9,10 +9,11 @@ namespace Safety_app.ViewModels
     {
         public Command LoginCommand { get; }
         public User user{get;set;}
-        private readonly IValidator _validator;
+        
         public LoginViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
+            
             App.Database.GetDrugOperator();
             user = new User();
         }

@@ -13,6 +13,7 @@ namespace Safety_app.Data.DatabaseOperation
         public DatabaseOperation(ref SQLiteAsyncConnection database)
         {
             _database = database;
+          
         }
       
 
@@ -21,15 +22,9 @@ namespace Safety_app.Data.DatabaseOperation
             return _database.DeleteAsync(Entity);
         }
         public abstract Task<T> FindAsync(Expression<Func<T, bool>> predicate);
-        //{
-        //    return _database.Table<T>()
-        //                    .Where(predicate)
-        //                    .FirstOrDefaultAsync();
-        //}
+ 
         public abstract Task<List<T>> GetAsync();
-        //{
-        //    return _database.Table<T>().ToListAsync();
-        //}
+     
 
         public Task<int> saveAsync(T Entity)
         {

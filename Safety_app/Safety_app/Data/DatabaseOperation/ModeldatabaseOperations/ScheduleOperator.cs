@@ -12,7 +12,7 @@ namespace Safety_app.Data.DatabaseOperation.ModeldatabaseOperations
     {
         public ScheduleOperator(ref SQLiteAsyncConnection database) : base( ref database)
         {
-
+            _database.CreateTableAsync<Shedule>().Wait();
         }
         public override Task<List<Shedule>> GetAsync()
         {

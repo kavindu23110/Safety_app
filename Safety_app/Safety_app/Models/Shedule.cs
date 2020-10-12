@@ -1,10 +1,13 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Safety_app.Models
 {
- public   class Shedule
+ public   class Shedule : BaseModel
     {
+     
+      
     }
 }
