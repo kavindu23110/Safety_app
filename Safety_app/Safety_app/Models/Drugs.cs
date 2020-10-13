@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Safety_app.Models
@@ -9,8 +10,7 @@ namespace Safety_app.Models
     {
         public String Name { get; set; }
         public String Notes { get; set; }
-        public bool Isselected { get; set; }
 
-
+        
     }
 }

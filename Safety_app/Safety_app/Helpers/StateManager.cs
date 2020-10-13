@@ -13,7 +13,7 @@ namespace Safety_app.Helpers
     
           
       
-        public static void StoreProperties(String key,object obj)
+        public static void StoreProperties<T>(String key,object obj)
         {
             key = key.ToUpper();
             if (Application.Current.Properties.Where(p => p.Key == key.ToUpper()).Any())

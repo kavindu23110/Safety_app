@@ -32,7 +32,8 @@ namespace Safety_app
             {
                 if (database == null)
                 {
-                    database = new DataContext(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "sqlite.db3"));
+                    database = new DataContext(Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.Personal),"sqlite.db3"));
                 }
                 return database;
             }

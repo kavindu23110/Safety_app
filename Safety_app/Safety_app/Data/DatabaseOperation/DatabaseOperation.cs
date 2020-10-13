@@ -28,14 +28,9 @@ namespace Safety_app.Data.DatabaseOperation
 
         public Task<int> saveAsync(T Entity)
         {
-          if (Entity !=null)
-            {
-                return _database.UpdateAsync(Entity);
-            }
-           else
-            {
+ 
                 return _database.InsertAsync(Entity);
-            }
+            
         }
     }
 }

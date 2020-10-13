@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:d="http://xamarin.com/schemas/2014/forms/design" 
              x:Class="Safety_app.App"
+             xmlns:prism="http://prismlibrary.com"
          
     >
     <!--
