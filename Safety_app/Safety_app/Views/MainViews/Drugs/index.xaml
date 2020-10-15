@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:local="clr-namespace:Safety_app.ViewModels.Drugs"  
+           xmlns:behaviors="clr-namespace:EventToCommandBehavior" xmlns:p="clr-namespace:Pillar;assembly=Pillar"
+             x:Class="Safety_app.Views.MainViews.Drugs.index"
+             x:Name="DrugsindexPage"
+            >
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="save"  Command="{Binding SaveDrugs}"	  Order="Primary" Priority="0" />
+
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        
+        
+        <StackLayout>
+            <Label Text="Select Drugs"></Label>
+
+            <Picker Title="Pick Your drugs"
+                   
+                    x:Name="DrugPicker" 
+           
+                    ItemsSource="{Binding lstDrugs }" 
+                    ItemDisplayBinding="{Binding Name}">
+                <Picker.Behaviors>
+                    <!--<behaviors:EventToCommandBehavior Command="{Binding AddSelectedDrug}" 
+                                                      EventName="SelectedIndexChanged" 
+                                                     >
+                    </behaviors:EventToCommandBehavior>-->
+                    <p:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding AddSelectedDrug}"  CommandParameter="{Binding SelectedItem,
+                                                      Source={x:Reference DrugPicker}}"  />
+                </Picker.Behaviors>
+            </Picker>
+            <ListView ItemsSource="{Binding lstSelectedDrugs }"  
+                      SelectionMode="Single" 
+                      SeparatorVisibility="Default"
+                     
+                     >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                    <ViewCell>
+
+
+                            <Grid>
+                                <Label Text="{Binding Name}" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand"/>
+
+
+                                <ImageButton x:Name="Remove" 
+                                             Grid.Column="2"
+                                             Command="{Binding BindingContext.RemoveDrugsFromListCommand,
+                                    Source={x:Reference DrugsindexPage}}"
+                                             CommandParameter="{Binding .}"
+                                         
+                                             Source="Remove.png" 
+                                             HorizontalOptions="EndAndExpand">
+
+
+                                </ImageButton>
+
+                               
+                            </Grid>
+                      
+                    </ViewCell>
+                      
+                </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button ImageSource="add.png"
+                    WidthRequest="70"
+                    HeightRequest="70" 
+                    HorizontalOptions="End"
+                    Margin="10" BorderRadius="30" 
+                     Command="{Binding Source={RelativeSource AncestorType={x:Type local:indexViewModel}}, Path=addnewDrug }"		
+                    ></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,7 +1,5 @@
-﻿using Safety_app.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Safety_app.Models;
+using Safety_app.Views;
 using Xamarin.Forms;
 
 namespace Safety_app.ViewModels
@@ -9,10 +7,14 @@ namespace Safety_app.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         public Command LoginCommand { get; }
+        public User user { get; set; }
 
         public LoginViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
+
+            App.Database.GetDrugOperator();
+            user = new User();
         }
 
         private async void OnLoginClicked(object obj)

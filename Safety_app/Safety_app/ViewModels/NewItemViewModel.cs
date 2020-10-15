@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
-using Safety_app.Models;
+﻿using Safety_app.Models;
+using System;
 using Xamarin.Forms;
 
 namespace Safety_app.ViewModels

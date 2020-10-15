@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Safety_app.ViewModels;
-using Safety_app.Views;
+﻿using Safety_app.Views;
+using Safety_app.Views.MainViews.Prescriptions;
+using Safety_app.Views.MainViews.Schedules;
+using System;
 using Xamarin.Forms;
 
 namespace Safety_app
@@ -13,6 +13,16 @@ namespace Safety_app
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(AddEditPrescription), typeof(AddEditPrescription));
+
+            Routing.RegisterRoute(nameof(Views.MainViews.Drugs.AddNewDrug), typeof(Views.MainViews.Drugs.AddNewDrug));
+            Routing.RegisterRoute(nameof(Safety_app.Views.MainViews.Drugs.index), typeof(Safety_app.Views.MainViews.Drugs.index));
+
+            Routing.RegisterRoute(nameof(AddEditSchedule), typeof(Views.MainViews.Schedules.AddEditSchedule));
+            Routing.RegisterRoute(nameof(Safety_app.Views.MainViews.Schedules.ScheduleDrugAdd), typeof(Safety_app.Views.MainViews.Schedules.ScheduleDrugAdd));
+            Routing.RegisterRoute(nameof(Views.MainViews.Schedules.PrescriptionSchedule), typeof(Views.MainViews.Schedules.PrescriptionSchedule));
+            Routing.RegisterRoute("Scheduleindex", typeof(Safety_app.Views.MainViews.Schedules.index));
+
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

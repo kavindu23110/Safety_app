@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Safety_app.Models;
+using Safety_app.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
 using Xamarin.Forms;
-
-using Safety_app.Models;
-using Safety_app.Services;
 
 namespace Safety_app.ViewModels
 {

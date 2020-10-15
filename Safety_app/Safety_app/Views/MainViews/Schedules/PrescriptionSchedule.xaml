@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:p="clr-namespace:Pillar;assembly=Pillar"
+             x:Class="Safety_app.Views.MainViews.Schedules.PrescriptionSchedule"
+             Title="PrescriptionSchedule">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="save"  
+            Command="{Binding SaveCommand }"	 
+            Order="Primary" Priority="0" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+
+
+        <StackLayout>
+            <Label Text="Select Schedule"></Label>
+
+            <Picker Title="Pick Your drugs"
+                    x:Name="SchedulePicker" 
+                    ItemsSource="{Binding  lstSchedules }" 
+                    ItemDisplayBinding="{Binding Name}">
+                <Picker.Behaviors>
+
+                    <p:EventToCommandBehavior 
+                        EventName="SelectedIndexChanged"
+                        Command="{Binding AddSelectedSchedule}"  
+                        CommandParameter="{Binding SelectedItem,Source={x:Reference SchedulePicker}}"  />
+                </Picker.Behaviors>
+            </Picker>
+            
+            <ListView ItemsSource="{Binding lstSelectedSchedules }"  
+                      SelectionMode="Single" 
+                      SeparatorVisibility="Default"
+                      x:Name="schedulelistview" >
+
+                <ListView.ItemTemplate  >
+                    <DataTemplate>
+                        <ViewCell >
+
+                            <Grid>
+                                <Label Text="{Binding Name}" FontAttributes="Bold"    
+                                       HorizontalOptions="CenterAndExpand" />
+                                <ImageButton x:Name="Remove" 
+                                             Grid.Column="2"
+                                             Command="{Binding BindingContext.RemoveScheduleFromListCommand,
+                                                       Source={x:Reference PrescriptionSchedule}}"
+                                             CommandParameter="{Binding .}"
+                                             Source="Remove.png" 
+                                             HorizontalOptions="EndAndExpand">
+                                </ImageButton>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+                <ListView.Behaviors>
+                    <p:EventToCommandBehavior 
+                        Command="{Binding Scheduleselected}" 
+                        EventName="ItemSelected" 
+                         CommandParameter="{Binding SelectedItem, Source={x:Reference schedulelistview}}" />
+
+                </ListView.Behaviors>
+            </ListView>
+            
+            <Button ImageSource="add.png"
+                    WidthRequest="70"
+                    HeightRequest="70"
+                    HorizontalOptions="End" 
+                    Margin="10" 
+                    BorderRadius="30" 
+                    Command="{Binding addnewSchedule}">
+            </Button>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

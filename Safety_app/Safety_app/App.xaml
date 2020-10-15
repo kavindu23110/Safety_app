@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Safety_app.App">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design" 
+             x:Class="Safety_app.App"
+             xmlns:prism="http://prismlibrary.com"
+         
+    >
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
@@ -27,6 +31,8 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            
+
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

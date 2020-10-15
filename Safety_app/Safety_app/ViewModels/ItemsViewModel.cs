@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Safety_app.Models;
+using Safety_app.Views;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
-
-using Safety_app.Models;
-using Safety_app.Views;
 
 namespace Safety_app.ViewModels
 {
