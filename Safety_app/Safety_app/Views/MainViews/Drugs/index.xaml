@@ -51,7 +51,7 @@
                                              Command="{Binding BindingContext.RemoveDrugsFromListCommand,
                                     Source={x:Reference DrugsindexPage}}"
                                              CommandParameter="{Binding .}"
-                                             Clicked="Remove_Clicked"
+                                         
                                              Source="Remove.png" 
                                              HorizontalOptions="EndAndExpand">
 

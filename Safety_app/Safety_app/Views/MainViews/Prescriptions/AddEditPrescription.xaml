@@ -6,7 +6,7 @@
               xmlns:behavior="clr-namespace:Safety_app.Validation.Behaviors"
              Title="AddEditPrescription">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="save"  Command="{Binding Source={RelativeSource AncestorType={x:Type local:AddEditPrescriptionViewModel}}, Path=savePrescription}"	  Order="Primary" Priority="0" />
+        <ToolbarItem Name="save"  Command="{Binding savePrescription}"	  Order="Primary" Priority="0" />
 
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

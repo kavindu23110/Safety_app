@@ -96,8 +96,8 @@ namespace Safety_app.ViewModels.Schedules
 
         private void loadPrescription()
         {
-            currentPrescription = StateManager.GetProperties<Prescription>("prescription").Id;
-
+            currentPrescription = StateManager.GetProperties<Prescription>(KeyValueDefinitions.Prescription).Id;
+            currentSchedule= StateManager.GetProperties<Shedule>(KeyValueDefinitions.Schedule).Id;
         }
 
         public async System.Threading.Tasks.Task loadPrescriptionDrugsAsync()

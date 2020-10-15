@@ -28,20 +28,20 @@ namespace Safety_app.ViewModels.Prescriptions
 
         private async void onAddEditSchedules(object obj)
         {
-            StateManager.StoreProperties<Prescription>("prescription", prescription);
+            StateManager.StoreProperties<Prescription>(Safety_app.BOD.KeyValueDefinitions.Prescription, prescription);
             await Shell.Current.GoToAsync("Scheduleindex");
 
         }
 
         private async void onAddDrugsAsync(object obj)
         {
-            StateManager.StoreProperties<Prescription>("prescription", prescription);
+            StateManager.StoreProperties<Prescription>(Safety_app.BOD.KeyValueDefinitions.Prescription, prescription);
             await Shell.Current.GoToAsync($"{nameof(Safety_app.Views.MainViews.Drugs.index)}");
         }
 
         private async void OnsavePrescription(object obj)
         {
-            await Shell.Current.DisplayAlert("saved", "eyj", "cancel");
+           await App.Database.GetPrescriptionOperator().saveAsync(prescription);
             await Shell.Current.GoToAsync("..");
         }
     }

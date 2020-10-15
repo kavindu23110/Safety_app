@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pillar.Ioc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +34,7 @@ namespace Safety_app.Helpers
             }
             else
             {
-                return (T)new object();
+                return (T)Activator.CreateInstance(typeof(T)); 
             }
         }
     }

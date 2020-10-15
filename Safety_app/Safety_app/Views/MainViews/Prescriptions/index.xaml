@@ -4,19 +4,32 @@
 
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:Class="Safety_app.Views.MainViews.Prescriptions.index"
-             xmlns:local="clr-namespace:Safety_app.ViewModels.Prescriptions"  
+             xmlns:local="clr-namespace:Safety_app.ViewModels.Prescriptions" xmlns:p="clr-namespace:Pillar;assembly=Pillar"
              Title="Prescriptions">
+
+
+
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Monkeys}">
+            <ListView ItemsSource="{Binding lstprescription} "  x:Name="prescriptionlist">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Label  Text="{Binding Path=name}"></Label>
+                            <Grid>
+                                <Label HorizontalOptions="CenterAndExpand" Text="{Binding Name}"></Label>
+                                <Label HorizontalOptions="CenterAndExpand" Text="{Binding Doctorname}"></Label>
+
+                            </Grid>
 
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    <p:EventToCommandBehavior Command="{Binding Prescriptionselected}" 
+                                                      EventName="ItemSelected" 
+                                                      CommandParameter="{Binding SelectedItem, Source={x:Reference prescriptionlist}}" />
+
+                </ListView.Behaviors>
             </ListView>
 
             <Button ImageSource="add.png" WidthRequest="70" HeightRequest="70" HorizontalOptions="End" Margin="10" BorderRadius="30" 
