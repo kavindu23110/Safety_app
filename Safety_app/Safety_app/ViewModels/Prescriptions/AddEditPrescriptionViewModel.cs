@@ -1,9 +1,5 @@
 ﻿using Safety_app.Helpers;
 using Safety_app.Models;
-using Safety_app.Views.MainViews.Prescriptions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -29,7 +25,7 @@ namespace Safety_app.ViewModels.Prescriptions
         private async void onAddEditSchedules(object obj)
         {
             StateManager.StoreProperties<Prescription>(Safety_app.BOD.KeyValueDefinitions.Prescription, prescription);
-            await Shell.Current.GoToAsync("Scheduleindex");
+            await Shell.Current.GoToAsync($"{nameof(Views.MainViews.Schedules.PrescriptionSchedule)}");
 
         }
 
@@ -41,7 +37,7 @@ namespace Safety_app.ViewModels.Prescriptions
 
         private async void OnsavePrescription(object obj)
         {
-           await App.Database.GetPrescriptionOperator().saveAsync(prescription);
+            await App.Database.GetPrescriptionOperator().saveAsync(prescription);
             await Shell.Current.GoToAsync("..");
         }
     }

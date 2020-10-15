@@ -1,12 +1,10 @@
 ﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Safety_app.Models
 {
-    public class Shedule :BaseModel
-    {   [Unique]
+    public class Shedule : BaseModel
+    {
+        [Unique]
         public string Name { get; set; }
         public bool IsInterval { get; set; }
         public int Hours { get; set; }

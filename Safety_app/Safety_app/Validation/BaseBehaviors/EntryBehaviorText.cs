@@ -1,13 +1,4 @@
-﻿using FluentValidation;
-using Safety_app.Validation.Abstracts;
-using Safety_app.Validation.Behaviors;
-using System;
-using System.Collections.Generic;
-using System.Net.Mime;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace Safety_app.Validation.BaseBehaviors
 {
@@ -63,7 +54,7 @@ namespace Safety_app.Validation.BaseBehaviors
                     errorLabel.IsVisible = false;
                     errorLabel.Text = string.Empty;
                 }
-              
+
                 if (Buttons != null)
                     Buttons.IsEnabled = false && Buttons.IsEnabled;
 

@@ -3,7 +3,6 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Safety_app.Data.DatabaseOperation.ModeldatabaseOperations
@@ -14,7 +13,7 @@ namespace Safety_app.Data.DatabaseOperation.ModeldatabaseOperations
 
         public DrugSchedulePrescriptionOperator(ref SQLiteAsyncConnection database) : base(ref database)
         {
-        _database.CreateTableAsync<DrugSchedulePrescription>().Wait();
+            _database.CreateTableAsync<DrugSchedulePrescription>().Wait();
         }
 
         public override Task<List<DrugSchedulePrescription>> GetAsync()
@@ -23,9 +22,9 @@ namespace Safety_app.Data.DatabaseOperation.ModeldatabaseOperations
         }
         public override Task<List<DrugSchedulePrescription>> FindAsync(Expression<Func<DrugSchedulePrescription, bool>> predicate)
         {
-       
-           return _database.Table<DrugSchedulePrescription>()
-                    .Where(predicate).ToListAsync();
+
+            return _database.Table<DrugSchedulePrescription>()
+                     .Where(predicate).ToListAsync();
 
         }
 

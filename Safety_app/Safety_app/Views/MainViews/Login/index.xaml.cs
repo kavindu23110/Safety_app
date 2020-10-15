@@ -12,7 +12,7 @@ namespace Safety_app.Views.MainViews.Login
         public index()
         {
             InitializeComponent();
-            BindingContext=new LoginViewModel();
+            BindingContext = new LoginViewModel();
 
         }
 

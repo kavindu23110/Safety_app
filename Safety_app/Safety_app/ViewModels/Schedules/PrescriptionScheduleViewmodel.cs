@@ -1,18 +1,15 @@
 ﻿using Safety_app.BOD;
 using Safety_app.Helpers;
 using Safety_app.Models;
-using Safety_app.Views.MainViews.Schedules;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Safety_app.ViewModels.Schedules
 {
-    public class indexViewmodel : BaseViewModel
+    public class PrescriptionScheduleViewmodel : BaseViewModel
     {
 
 
@@ -26,10 +23,10 @@ namespace Safety_app.ViewModels.Schedules
         public ObservableCollection<Models.Shedule> lstSelectedSchedules { get; set; }
         public string currentPrescription { get; private set; }
 
-        public indexViewmodel()
+        public PrescriptionScheduleViewmodel()
         {
             addnewSchedule = new Command(AddNewschedule);
-            lstSelectedSchedules= new ObservableCollection<Models.Shedule>();
+            lstSelectedSchedules = new ObservableCollection<Models.Shedule>();
             AddSelectedSchedule = new Command(OnAddSelectedschedule);
             Scheduleselected = new Command(OnScheduleselectedAsync);
             SaveCommand = new Command(OnSaveCommandAsync);
@@ -40,13 +37,13 @@ namespace Safety_app.ViewModels.Schedules
         private async void OnSaveCommandAsync(object obj)
         {
             await AppShell.Current.GoToAsync($"..");
-      
+
         }
 
         private void loadPrescription()
         {
             currentPrescription = StateManager.GetProperties<Prescription>(KeyValueDefinitions.Prescription).Id;
-           
+
 
         }
 
@@ -56,19 +53,19 @@ namespace Safety_app.ViewModels.Schedules
             {
                 var schedule = (Models.Shedule)obj;
                 lstSchedules.Add(schedule);
-                lstSelectedSchedules .Remove(schedule);
+                lstSelectedSchedules.Remove(schedule);
             }
         }
 
         private async void OnScheduleselectedAsync(object obj)
         {
-            StateManager.StoreProperties<Models.Shedule>(KeyValueDefinitions.Schedule,obj);
+            StateManager.StoreProperties<Models.Shedule>(KeyValueDefinitions.Schedule, obj);
             await AppShell.Current.GoToAsync($"{nameof(Safety_app.Views.MainViews.Schedules.ScheduleDrugAdd)}");
         }
 
         private void OnAddSelectedschedule(object obj)
         {
-            if (obj !=null)
+            if (obj != null)
             {
                 var schedule = (Models.Shedule)obj;
                 lstSelectedSchedules.Add(schedule);
@@ -79,18 +76,18 @@ namespace Safety_app.ViewModels.Schedules
         public async System.Threading.Tasks.Task LoadSchedulesAsync()
         {
             var shedules = await App.Database.GetScheduleOperator().GetAsync();
-           lstSchedules = new ObservableCollection<Models.Shedule>(shedules);
+            lstSchedules = new ObservableCollection<Models.Shedule>(shedules);
             loadAssignedSchedulesAsync();
-           
+
         }
 
 
         public async void loadAssignedSchedulesAsync()
         {
-            
-        var selectedScheduleIds= await   App.Database.GetDrugSchedulePrescriptionOperator().FindAsync(p => p.IsActive == 1 && p.PrescriptionId == currentPrescription);
+
+            var selectedScheduleIds = await App.Database.GetDrugSchedulePrescriptionOperator().FindAsync(p => p.IsActive == 1 && p.PrescriptionId == currentPrescription);
             var lstselected = lstSchedules.Where(p => (selectedScheduleIds.ToList().Select(s => s.ScheduleId)).Contains(p.Id)).ToList();
-            lstSelectedSchedules= new ObservableCollection<Models.Shedule>(lstselected);
+            lstSelectedSchedules = new ObservableCollection<Models.Shedule>(lstselected);
             foreach (var item in lstSelectedSchedules)
             {
                 lstSchedules.Remove(item);

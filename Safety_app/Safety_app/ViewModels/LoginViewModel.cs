@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using Safety_app.Models;
+﻿using Safety_app.Models;
 using Safety_app.Views;
 using Xamarin.Forms;
 
@@ -8,12 +7,12 @@ namespace Safety_app.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         public Command LoginCommand { get; }
-        public User user{get;set;}
-        
+        public User user { get; set; }
+
         public LoginViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
-            
+
             App.Database.GetDrugOperator();
             user = new User();
         }

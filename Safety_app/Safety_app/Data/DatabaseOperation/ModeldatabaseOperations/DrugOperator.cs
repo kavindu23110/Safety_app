@@ -3,14 +3,13 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Safety_app.Data.DatabaseOperation.ModeldatabaseOperations
 {
     public class DrugOperator : DatabaseOperation<Drugs>
     {
-     
+
 
         public DrugOperator(ref SQLiteAsyncConnection database) : base(ref database)
         {

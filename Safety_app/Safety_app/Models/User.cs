@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
 
 namespace Safety_app.Models
 {

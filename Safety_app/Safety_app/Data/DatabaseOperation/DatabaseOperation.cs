@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Safety_app.Data.DatabaseOperation
@@ -36,8 +35,8 @@ namespace Safety_app.Data.DatabaseOperation
 
             return _database.UpdateAsync(Entity);
         }
-     
-        
+
+
 
 
     }

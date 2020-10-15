@@ -1,23 +1,20 @@
-﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace Safety_app.Models
 {
-   public class Prescription : BaseModel
+    public class Prescription : BaseModel
     {
         public Prescription()
         {
             StartDate = DateTime.Today;
-           EndDate = DateTime.Today;
+            EndDate = DateTime.Today;
         }
 
-        public string Name{ get; set; }
-        public string Doctorname{ get; set; }
-        public DateTime StartDate{ get; set; }
+        public string Name { get; set; }
+        public string Doctorname { get; set; }
+        public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
- 
-   
+
+
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Xamarin.Forms;
 
 namespace Safety_app.Helpers.Converters
@@ -16,7 +14,7 @@ namespace Safety_app.Helpers.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value;
-          
+
         }
     }
 }

@@ -3,14 +3,13 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Safety_app.Data.DatabaseOperation.ModeldatabaseOperations
 {
     public class PrescriptionOperator : DatabaseOperation<Prescription>
     {
-        public PrescriptionOperator(ref SQLiteAsyncConnection database):base(ref database)
+        public PrescriptionOperator(ref SQLiteAsyncConnection database) : base(ref database)
         {
             _database.CreateTableAsync<Prescription>().Wait();
         }

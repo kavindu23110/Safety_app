@@ -8,7 +8,7 @@ namespace Safety_app.ViewModels
     {
         public AboutViewModel()
         {
-           
+
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamain-quickstart"));
         }
 

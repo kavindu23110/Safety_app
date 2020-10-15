@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Safety_app.ViewModels;
-using Safety_app.Views;
+﻿using Safety_app.Views;
 using Safety_app.Views.MainViews.Prescriptions;
 using Safety_app.Views.MainViews.Schedules;
+using System;
 using Xamarin.Forms;
 
 namespace Safety_app
@@ -22,6 +20,7 @@ namespace Safety_app
 
             Routing.RegisterRoute(nameof(AddEditSchedule), typeof(Views.MainViews.Schedules.AddEditSchedule));
             Routing.RegisterRoute(nameof(Safety_app.Views.MainViews.Schedules.ScheduleDrugAdd), typeof(Safety_app.Views.MainViews.Schedules.ScheduleDrugAdd));
+            Routing.RegisterRoute(nameof(Views.MainViews.Schedules.PrescriptionSchedule), typeof(Views.MainViews.Schedules.PrescriptionSchedule));
             Routing.RegisterRoute("Scheduleindex", typeof(Safety_app.Views.MainViews.Schedules.index));
 
         }

@@ -1,8 +1,4 @@
-﻿using Safety_app.Validation.Abstracts;
-using Safety_app.Validation.BaseBehaviors;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Safety_app.Validation.BaseBehaviors;
 using Xamarin.Forms;
 
 namespace Safety_app.Validation.Behaviors

@@ -1,23 +1,19 @@
 ﻿using Safety_app.BOD;
 using Safety_app.Helpers;
 using Safety_app.Models;
-using Safety_app.Views;
 using Safety_app.Views.MainViews.Prescriptions;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Safety_app.ViewModels.Prescriptions
 {
- public   class indexViewModel:BaseViewModel
+    public class indexViewModel : BaseViewModel
     {
         public ICommand addnewPrescription { get; }
         public ICommand Prescriptionselected { get; }
 
-        public ObservableCollection<Prescription> lstprescription{ get; set; }
+        public ObservableCollection<Prescription> lstprescription { get; set; }
         public Prescription selectedPrescription { get; set; }
 
         public indexViewModel()
@@ -27,15 +23,15 @@ namespace Safety_app.ViewModels.Prescriptions
             selectedPrescription = new Prescription();
         }
 
-        private async void OnPrescriptionselectedAsync(object  obj)
+        private async void OnPrescriptionselectedAsync(object obj)
         {
-            StateManager.StoreProperties<Prescription>(KeyValueDefinitions.Prescription,obj);
-            await Shell.Current.GoToAsync($"Scheduleindex");
+            StateManager.StoreProperties<Prescription>(KeyValueDefinitions.Prescription, obj);
+            await Shell.Current.GoToAsync($"{nameof(Views.MainViews.Schedules.PrescriptionSchedule)}");
         }
 
         private async void OnaddnewPrescription(object obj)
         {
-         await Shell.Current.GoToAsync($"{nameof(AddEditPrescription)}");
+            await Shell.Current.GoToAsync($"{nameof(AddEditPrescription)}");
         }
         private async void OnselectPrescription(object obj)
         {
@@ -45,7 +41,7 @@ namespace Safety_app.ViewModels.Prescriptions
 
         public async System.Threading.Tasks.Task OnAppearing()
         {
-          var list= await App.Database.GetPrescriptionOperator().FindAsync(p => p.IsActive == 1);
+            var list = await App.Database.GetPrescriptionOperator().FindAsync(p => p.IsActive == 1);
             lstprescription = new ObservableCollection<Prescription>(list);
         }
 

@@ -32,9 +32,7 @@
             <ListView ItemsSource="{Binding lstSelectedSchedules }"  
                       SelectionMode="Single" 
                       SeparatorVisibility="Default"
-                      x:Name="schedulelistview" 
-                 
-                   >
+                      x:Name="schedulelistview" >
                
                 <ListView.ItemTemplate  >
                     <DataTemplate>

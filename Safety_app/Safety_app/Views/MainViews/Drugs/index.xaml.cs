@@ -1,10 +1,4 @@
-﻿using Safety_app.Data.DatabaseOperation;
-using Safety_app.ViewModels.Drugs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Safety_app.ViewModels.Drugs;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -27,7 +21,7 @@ namespace Safety_app.Views.MainViews.Drugs
 
         private async void load()
         {
-         await   (this.BindingContext as indexViewModel).LoadDrugsAsync();
+            await (this.BindingContext as indexViewModel).LoadDrugsAsync();
         }
 
 

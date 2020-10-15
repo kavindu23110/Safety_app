@@ -1,12 +1,8 @@
-﻿using Safety_app.Validation.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace Safety_app.Validation.BaseBehaviors
 {
-    public abstract class DatePickerBehavior: Behavior<DatePicker>
+    public abstract class DatePickerBehavior : Behavior<DatePicker>
     {
         public static readonly BindableProperty Errorlabelname = BindableProperty.Create("ErrorLabel", typeof(string), typeof(DatePickerBehavior), string.Empty);
         public static readonly BindableProperty ErrorMessage = BindableProperty.Create("Message", typeof(string), typeof(DatePickerBehavior), string.Empty);

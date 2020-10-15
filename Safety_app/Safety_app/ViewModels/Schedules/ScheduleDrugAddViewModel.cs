@@ -4,7 +4,6 @@ using Safety_app.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -54,7 +53,7 @@ namespace Safety_app.ViewModels.Schedules
 
         private async void OnSaveScheduleDrug(object obj)
         {
-             foreach (var drug in lstScheduleDrugs)
+            foreach (var drug in lstScheduleDrugs)
             {
 
                 var current = await App.Database.GetDrugSchedulePrescriptionOperator().GetSelectedAsync(p => p.DrugId == drug.Id
@@ -67,9 +66,9 @@ namespace Safety_app.ViewModels.Schedules
                     await App.Database.GetDrugSchedulePrescriptionOperator().updateAsync(current);
 
                 }
-            
+
                 await App.Database.GetDrugSchedulePrescriptionOperator().saveAsync(SetDrugSchedulePrescription(drug));
-                
+
             }
             await AppShell.Current.GoToAsync("..");
         }
@@ -97,7 +96,7 @@ namespace Safety_app.ViewModels.Schedules
         private void loadPrescription()
         {
             currentPrescription = StateManager.GetProperties<Prescription>(KeyValueDefinitions.Prescription).Id;
-            currentSchedule= StateManager.GetProperties<Shedule>(KeyValueDefinitions.Schedule).Id;
+            currentSchedule = StateManager.GetProperties<Shedule>(KeyValueDefinitions.Schedule).Id;
         }
 
         public async System.Threading.Tasks.Task loadPrescriptionDrugsAsync()

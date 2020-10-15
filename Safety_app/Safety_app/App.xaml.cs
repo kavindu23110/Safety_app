@@ -1,13 +1,8 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Safety_app.Data.DatabaseOperation;
 using Safety_app.Services;
-using Safety_app.Views;
-using Safety_app.Data;
+using System;
 using System.IO;
-using Safety_app.Data.DatabaseOperation;
-using Safety_app.Models;
-using Safety_app.Helpers;
+using Xamarin.Forms;
 
 namespace Safety_app
 {
@@ -22,7 +17,7 @@ namespace Safety_app
 
             MainPage = new AppShell();
         }
-  
+
 
         static DataContext database;
 
@@ -33,7 +28,7 @@ namespace Safety_app
                 if (database == null)
                 {
                     database = new DataContext(Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.Personal),"sqlite.db3"));
+        Environment.GetFolderPath(Environment.SpecialFolder.Personal), "sqlite.db3"));
                 }
                 return database;
             }

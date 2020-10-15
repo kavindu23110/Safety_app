@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Safety_app.ViewModels.Drugs
 {
 
-   public class AddNewdrugViewModel:BaseViewModel
+    public class AddNewdrugViewModel : BaseViewModel
     {
         public ICommand SaveDrug { get; set; }
         public Models.Drugs drug { get; set; }
@@ -15,12 +12,12 @@ namespace Safety_app.ViewModels.Drugs
         {
             SaveDrug = new Command(OnSaveDrugAsync);
             drug = new Models.Drugs();
-            
+
         }
 
         private async void OnSaveDrugAsync(object obj)
         {
-          await  App.Database.GetDrugOperator().saveAsync(drug);
+            await App.Database.GetDrugOperator().saveAsync(drug);
             await Shell.Current.GoToAsync("..");
         }
     }
