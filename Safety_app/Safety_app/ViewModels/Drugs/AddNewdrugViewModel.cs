@@ -21,7 +21,6 @@ namespace Safety_app.ViewModels.Drugs
         private async void OnSaveDrugAsync(object obj)
         {
           await  App.Database.GetDrugOperator().saveAsync(drug);
-          var t= await  App.Database.GetDrugOperator().GetAsync();
             await Shell.Current.GoToAsync("..");
         }
     }

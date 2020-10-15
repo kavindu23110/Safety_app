@@ -1,12 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:Helpers="clr-namespace:Safety_app.Helpers.Converters"
              x:Class="Safety_app.Views.MainViews.Schedules.AddEditSchedule">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="save"  Command="{Binding  Path=SaveSchedule}"	  Order="Primary" Priority="0" />
+
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
+        
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+  
+            <Label Text="Schedule name"  HorizontalOptions="CenterAndExpand"></Label>
+            <Entry Text="{Binding Path=Shedule.Name, Mode=TwoWay}"></Entry>
+            <Picker x:Name="picker" SelectedItem="{Binding Path=Shedule.timebase, Mode=TwoWay}" VerticalOptions="Center" 
+               Title="Duration"
+               TitleColor="Red">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Daily</x:String>
+                        <x:String>Time based</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+                </Picker>
+            <Grid>
+                <Label HorizontalOptions="StartAndExpand">Hours</Label>
+                <Switch x:Name="ModeSelection"  IsToggled="{Binding Path=Shedule.IsInterval, Mode=TwoWay}" HorizontalOptions="CenterAndExpand"></Switch>
+                <Label HorizontalOptions="End">Specific time</Label>
+            </Grid>
+            <Label  IsVisible="{Binding Source={x:Reference ModeSelection}, Path=IsToggled
+                ,Converter={Helpers:InverseBoolConverter}}" HorizontalOptions="CenterAndExpand">Time </Label>
+            <TimePicker
+                Time="{Binding Path=Shedule.TimeSpan, Mode=TwoWay,Converter={Helpers:TimeSpanToLongConverter}}"
+                IsVisible="{Binding Source={x:Reference ModeSelection}, Path=IsToggled
+                ,Converter={Helpers:InverseBoolConverter}}"></TimePicker>
+            
+            <Grid IsVisible="{Binding Source={x:Reference ModeSelection}, Path=IsToggled}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                 
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Column="0"  
+                    HorizontalTextAlignment="Center">Hours</Label>
+                <Label
+                    Grid.Column="1"  
+                    HorizontalTextAlignment="Center">Minites</Label>
+
+                <Entry 
+                    Text="{Binding Path=Shedule.Hours, Mode=TwoWay, Converter={Helpers:StringToBoolConverter}}" 
+                    Grid.Column="0" 
+                    Margin="10"></Entry>
+                
+                <Entry 
+                    Text="{Binding Path=Shedule.Miunites, Mode=TwoWay, Converter={Helpers:StringToBoolConverter}}"
+                    Grid.Column="1" 
+                    Margin="10"></Entry>
+         
+           
+                
+            </Grid>
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

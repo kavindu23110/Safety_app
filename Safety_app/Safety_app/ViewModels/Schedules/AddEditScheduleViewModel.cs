@@ -8,16 +8,24 @@ namespace Safety_app.ViewModels.Schedules
 {
     public class AddEditScheduleViewModel : BaseViewModel
     {
-        public ICommand addnewSchedule { get; }
-
+   
+        public ICommand SaveSchedule { get; }
+        public Models.Shedule Shedule { get; set; }
         public AddEditScheduleViewModel()
         {
-            addnewSchedule = new Command(AddNewschedule);
+         
+            SaveSchedule = new Command(OnSaveScheduleAsync);
+            Shedule = new Models.Shedule();
         }
 
-        private void AddNewschedule(object obj)
+        private async void OnSaveScheduleAsync(object obj)
         {
-            AppShell.Current.GoToAsync($"{nameof(Safety_app.Views.MainViews.Schedules.AddEditSchedule)}");
+            
+            await App.Database.GetScheduleOperator().saveAsync(Shedule);
+           await Shell.Current.GoToAsync("..");
         }
+
+
+
     }
 }

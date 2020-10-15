@@ -12,6 +12,7 @@ namespace Safety_app.Data.DatabaseOperation
         public static PrescriptionOperator prescriptionOperator { get; set; }
         public static ScheduleOperator ScheduleOperator { get; set; }
         public static DrugOperator DrugOperator { get; set; }
+        public static DrugSchedulePrescriptionOperator DrugSchedulePrescriptionOperator { get; set; }
     
         public DataContext(string dbPath)
         {
@@ -25,6 +26,7 @@ namespace Safety_app.Data.DatabaseOperation
             prescriptionOperator = new PrescriptionOperator(ref _database);
             ScheduleOperator = new ScheduleOperator(ref _database);
             DrugOperator = new DrugOperator(ref _database);
+            DrugSchedulePrescriptionOperator=new DrugSchedulePrescriptionOperator(ref _database);
         }
        public PrescriptionOperator GetPrescriptionOperator()
         {
@@ -37,6 +39,14 @@ namespace Safety_app.Data.DatabaseOperation
         public DrugOperator GetDrugOperator()
         {
             return DrugOperator;
+        }  
+        public DrugSchedulePrescriptionOperator GetDrugSchedulePrescriptionOperator()
+        {
+            return DrugSchedulePrescriptionOperator;
+        }
+        public SQLiteAsyncConnection GetDatabase()
+        {
+            return _database;
         }
     }
 }

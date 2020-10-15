@@ -29,7 +29,7 @@ namespace Safety_app.ViewModels.Prescriptions
         private async void onAddEditSchedules(object obj)
         {
             StateManager.StoreProperties<Prescription>("prescription", prescription);
-            await Shell.Current.GoToAsync($"{nameof(Safety_app.Views.MainViews.Schedules.index)}");
+            await Shell.Current.GoToAsync("Scheduleindex");
 
         }
 

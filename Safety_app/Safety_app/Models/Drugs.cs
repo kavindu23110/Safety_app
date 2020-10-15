@@ -10,7 +10,8 @@ namespace Safety_app.Models
     {
         public String Name { get; set; }
         public String Notes { get; set; }
+        [Ignore]
+        public int Quantity { get; set; }
 
-        
     }
 }

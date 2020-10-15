@@ -13,6 +13,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <Label  Text="{Binding Path=name}"></Label>
+
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

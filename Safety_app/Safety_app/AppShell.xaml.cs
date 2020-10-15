@@ -16,9 +16,14 @@ namespace Safety_app
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             Routing.RegisterRoute(nameof(AddEditPrescription), typeof(AddEditPrescription));
-            Routing.RegisterRoute(nameof(AddEditSchedule), typeof(AddEditSchedule));
+
             Routing.RegisterRoute(nameof(Views.MainViews.Drugs.AddNewDrug), typeof(Views.MainViews.Drugs.AddNewDrug));
             Routing.RegisterRoute(nameof(Safety_app.Views.MainViews.Drugs.index), typeof(Safety_app.Views.MainViews.Drugs.index));
+
+            Routing.RegisterRoute(nameof(AddEditSchedule), typeof(Views.MainViews.Schedules.AddEditSchedule));
+            Routing.RegisterRoute(nameof(Safety_app.Views.MainViews.Schedules.ScheduleDrugAdd), typeof(Safety_app.Views.MainViews.Schedules.ScheduleDrugAdd));
+            Routing.RegisterRoute("Scheduleindex", typeof(Safety_app.Views.MainViews.Schedules.index));
+
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

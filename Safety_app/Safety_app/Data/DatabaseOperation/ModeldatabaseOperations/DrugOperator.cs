@@ -16,16 +16,24 @@ namespace Safety_app.Data.DatabaseOperation.ModeldatabaseOperations
         {
             _database.CreateTableAsync<Drugs>().Wait();
         }
+
+        public override Task<List<Drugs>> FindAsync(Expression<Func<Drugs, bool>> predicate)
+        {
+            return _database.Table<Drugs>()
+                           .Where(predicate)
+                           .ToListAsync();
+        }
+
         public override Task<List<Drugs>> GetAsync()
         {
             return _database.Table<Drugs>().ToListAsync();
         }
-        public override Task<Drugs> FindAsync(Expression<Func<Drugs, bool>> predicate)
+
+        public override Task<Drugs> GetSelectedAsync(Expression<Func<Drugs, bool>> predicate)
         {
             return _database.Table<Drugs>()
-                            .Where(predicate)
-                            .FirstOrDefaultAsync();
+                         .Where(predicate)
+                         .FirstOrDefaultAsync();
         }
-
     }
 }

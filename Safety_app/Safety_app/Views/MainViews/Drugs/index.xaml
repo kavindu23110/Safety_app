@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:local="clr-namespace:Safety_app.ViewModels.Drugs"  
-           xmlns:behaviors="clr-namespace:EventToCommandBehavior"
+           xmlns:behaviors="clr-namespace:EventToCommandBehavior" xmlns:p="clr-namespace:Pillar;assembly=Pillar"
              x:Class="Safety_app.Views.MainViews.Drugs.index"
+             x:Name="DrugsindexPage"
             >
 
     <ContentPage.ToolbarItems>
@@ -23,11 +24,12 @@
                     ItemsSource="{Binding lstDrugs }" 
                     ItemDisplayBinding="{Binding Name}">
                 <Picker.Behaviors>
-                    <behaviors:EventToCommandBehavior Command="{Binding AddSelectedDrug}" 
+                    <!--<behaviors:EventToCommandBehavior Command="{Binding AddSelectedDrug}" 
                                                       EventName="SelectedIndexChanged" 
-                                                      CommandParameter="{Binding SelectedItem,
-                                                      Source={x:Reference DrugPicker}}" >
-                    </behaviors:EventToCommandBehavior>
+                                                     >
+                    </behaviors:EventToCommandBehavior>-->
+                    <p:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding AddSelectedDrug}"  CommandParameter="{Binding SelectedItem,
+                                                      Source={x:Reference DrugPicker}}"  />
                 </Picker.Behaviors>
             </Picker>
             <ListView ItemsSource="{Binding lstSelectedDrugs }"  
@@ -44,9 +46,19 @@
                                 <Label Text="{Binding Name}" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand"/>
 
 
-                                <ImageButton x:Name="" Source="Remove.png"  HorizontalOptions="EndAndExpand">
-                           
+                                <ImageButton x:Name="Remove" 
+                                             Grid.Column="2"
+                                             Command="{Binding BindingContext.RemoveDrugsFromListCommand,
+                                    Source={x:Reference DrugsindexPage}}"
+                                             CommandParameter="{Binding .}"
+                                             Clicked="Remove_Clicked"
+                                             Source="Remove.png" 
+                                             HorizontalOptions="EndAndExpand">
+
+
                                 </ImageButton>
+
+                               
                             </Grid>
                       
                     </ViewCell>

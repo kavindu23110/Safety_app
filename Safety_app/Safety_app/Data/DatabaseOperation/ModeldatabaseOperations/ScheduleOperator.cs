@@ -14,17 +14,27 @@ namespace Safety_app.Data.DatabaseOperation.ModeldatabaseOperations
         {
             _database.CreateTableAsync<Shedule>().Wait();
         }
+
+        public override Task<List<Shedule>> FindAsync(Expression<Func<Shedule, bool>> predicate)
+        {
+          
+            return _database.Table<Shedule>()
+                           .Where(predicate)
+                           .ToListAsync();
+        }
+
         public override Task<List<Shedule>> GetAsync()
         {
             return _database.Table<Shedule>().ToListAsync();
         }
 
-        public override Task<Shedule> FindAsync(Expression<Func<Shedule, bool>> predicate)
-        {
+     
 
+        public override Task<Shedule> GetSelectedAsync(Expression<Func<Shedule, bool>> predicate)
+        {
             return _database.Table<Shedule>()
-                            .Where(predicate)
-                            .FirstOrDefaultAsync();
+                     .Where(predicate)
+                     .FirstOrDefaultAsync();
         }
     }
 }

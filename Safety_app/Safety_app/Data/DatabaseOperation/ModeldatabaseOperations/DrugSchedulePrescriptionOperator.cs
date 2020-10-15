@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace Safety_app.Data.DatabaseOperation.ModeldatabaseOperations
 {
-
-    public class SchedulePrescriptionOperater : DatabaseOperation<DrugSchedulePrescription>
+    public class DrugSchedulePrescriptionOperator : DatabaseOperation<DrugSchedulePrescription>
     {
-        public SchedulePrescriptionOperater(ref SQLiteAsyncConnection database) : base(ref database)
+
+
+        public DrugSchedulePrescriptionOperator(ref SQLiteAsyncConnection database) : base(ref database)
         {
-            _database.CreateTableAsync<Drugs>().Wait();
+        _database.CreateTableAsync<DrugSchedulePrescription>().Wait();
         }
 
         public override Task<List<DrugSchedulePrescription>> GetAsync()
@@ -22,16 +23,17 @@ namespace Safety_app.Data.DatabaseOperation.ModeldatabaseOperations
         }
         public override Task<List<DrugSchedulePrescription>> FindAsync(Expression<Func<DrugSchedulePrescription, bool>> predicate)
         {
-            return _database.Table<DrugSchedulePrescription>()
-                            .Where(predicate)
-                            .ToListAsync();
+       
+           return _database.Table<DrugSchedulePrescription>()
+                    .Where(predicate).ToListAsync();
+
         }
 
         public override Task<DrugSchedulePrescription> GetSelectedAsync(Expression<Func<DrugSchedulePrescription, bool>> predicate)
         {
             return _database.Table<DrugSchedulePrescription>()
-                       .Where(predicate)
-                       .FirstOrDefaultAsync();
+                           .Where(predicate)
+                           .FirstOrDefaultAsync();
         }
     }
 }

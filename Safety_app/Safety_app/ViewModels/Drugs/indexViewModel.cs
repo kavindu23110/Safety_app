@@ -20,13 +20,14 @@ namespace Safety_app.ViewModels.Drugs
 
 
         public ICommand addnewDrug { get; }
-       
+        public ICommand RemoveDrugsFromListCommand { get; }
+
         public ICommand AddSelectedDrug { get; }
         public ICommand SaveDrugs { get; }
 
         public ObservableCollection<Models.Drugs> lstDrugs { get; set; }
 
-        public ObservableCollection<Models.Drugs> lstSelectedDrugs {get; set;}
+        public ObservableCollection<Models.Drugs> lstSelectedDrugs { get; set; }
 
 
         public indexViewModel()
@@ -35,23 +36,35 @@ namespace Safety_app.ViewModels.Drugs
             addnewDrug = new Command(OnAddNewDrugAsync);
             AddSelectedDrug = new Command(OnAddSelectedDrug);
             SaveDrugs = new Command(OnSaveDrugs);
+            RemoveDrugsFromListCommand = new Command(OnRemoveDrugsFromListCommand);
 
             lstDrugs = new ObservableCollection<Models.Drugs>();
             lstSelectedDrugs = new ObservableCollection<Models.Drugs>();
 
         }
 
+        private void OnRemoveDrugsFromListCommand(object obj)
+        {
+            if (obj != null)
+            {
+                lstDrugs.Add((Models.Drugs)obj);
+                lstSelectedDrugs.Remove((Models.Drugs)obj);
+            }
+        }
+
         private void OnSaveDrugs(object obj)
         {
-            
             StateManager.StoreProperties<ObservableCollection<Models.Drugs>>(KeyValueDefinitions.lstselecteddrugs, lstSelectedDrugs);
             AppShell.Current.GoToAsync("..");
         }
 
         private void OnAddSelectedDrug(object obj)
         {
-            lstSelectedDrugs.Add((Models.Drugs)obj);
-            lstDrugs.Remove((Models.Drugs)obj);
+            if (obj != null)
+            {
+                lstSelectedDrugs.Add((Models.Drugs)obj);
+                lstDrugs.Remove((Models.Drugs)obj);
+            }
         }
 
 

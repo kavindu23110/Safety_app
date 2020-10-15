@@ -12,5 +12,15 @@ namespace Safety_app.Views.MainViews.Schedules
             InitializeComponent();
             BindingContext = new Safety_app.ViewModels.Schedules.indexViewmodel();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            load();
+        }
+        private async void load()
+        {
+            await (this.BindingContext as Safety_app.ViewModels.Schedules.indexViewmodel).LoadSchedulesAsync();
+        }
     }
 }
