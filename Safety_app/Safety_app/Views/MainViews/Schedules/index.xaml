@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Safety_app.ViewModels.Schedules" 
              xmlns:behaviors="clr-namespace:EventToCommandBehavior" xmlns:p="clr-namespace:Pillar;assembly=Pillar"
              x:Class="Safety_app.Views.MainViews.Schedules.index"
+             Title="Schedules"
              x:Name="ScheduleIndexpage">
 
 
@@ -15,21 +16,8 @@
 
 
         <StackLayout>
-            <Label Text="Select Schedule"></Label>
 
-            <Picker Title="Pick Your drugs"
-                   
-                    x:Name="SchedulePicker" 
-           
-                    ItemsSource="{Binding  lstSchedules }" 
-                    ItemDisplayBinding="{Binding Name}">
-                <Picker.Behaviors>
-
-                    <p:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding AddSelectedSchedule}"  CommandParameter="{Binding SelectedItem,
-                                                      Source={x:Reference SchedulePicker}}"  />
-                </Picker.Behaviors>
-            </Picker>
-            <ListView ItemsSource="{Binding lstSelectedSchedules }"  
+            <ListView ItemsSource="{Binding lstSchedules }"  
                       SelectionMode="Single" 
                       SeparatorVisibility="Default"
                       x:Name="schedulelistview" >
@@ -39,23 +27,19 @@
                         <ViewCell >
 
                             <Grid>
-                            <Label Text="{Binding Name}" FontAttributes="Bold"    HorizontalOptions="CenterAndExpand" />
-                            <ImageButton x:Name="Remove" 
-                                             Grid.Column="2"
-                                             Command="{Binding BindingContext.RemoveScheduleFromListCommand,
-                                    Source={x:Reference ScheduleIndexpage}}"
-                                             CommandParameter="{Binding .}"
-                                   
-                                             Source="Remove.png" 
-                                             HorizontalOptions="EndAndExpand">
-                            </ImageButton>
-                 
+                                <Label Text="{Binding Name}" FontAttributes="Bold"    HorizontalOptions="CenterAndExpand" />
                             </Grid>
 
                         </ViewCell>
 
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectScheduleCommand}">
+                        
+                    </TapGestureRecognizer>
+                </ListView.GestureRecognizers>
+                
                 <ListView.Behaviors>
                     <p:EventToCommandBehavior Command="{Binding Scheduleselected}" 
                                                       EventName="ItemSelected" 
@@ -63,6 +47,7 @@
                
                 </ListView.Behaviors>
             </ListView>
+            
             <Button ImageSource="add.png" WidthRequest="70" HeightRequest="70" HorizontalOptions="End" Margin="10" BorderRadius="30" 
                      Command="{Binding addnewSchedule}"		
                     ></Button>
