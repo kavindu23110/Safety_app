@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:p="clr-namespace:Pillar;assembly=Pillar"
              x:Class="Safety_app.Views.MainViews.Schedules.PrescriptionSchedule"
-             Title="PrescriptionSchedule">
+             Title="Prescription Schedule"
+             x:Name="PrescriptionSchedulePage">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem 
@@ -33,10 +34,12 @@
                     <p:EventToCommandBehavior 
                         EventName="SelectedIndexChanged"
                         Command="{Binding AddSelectedSchedule}"  
-                        CommandParameter="{Binding SelectedItem,Source={x:Reference SchedulePicker}}"  />
+                        CommandParameter="{Binding SelectedItem,Source={x:Reference Name=SchedulePicker}}"  />
                 </Picker.Behaviors>
             </Picker>
-            
+
+
+
             <ListView ItemsSource="{Binding lstSelectedSchedules }"  
                       SelectionMode="Single" 
                       Margin="0,20,0,20" 
@@ -55,6 +58,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="50"  ></ColumnDefinition>
                                     <ColumnDefinition Width="*"   ></ColumnDefinition>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
                                     <ColumnDefinition Width="50"  ></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="{StaticResource imgTimer}" 
@@ -79,12 +83,28 @@
                                        HorizontalOptions="StartAndExpand" 
                                        FontSize="Default" ></Label>
                                 
+                                <ImageButton   IsEnabled="True"
+                                    Source="{StaticResource imgEdit}"  
+                                    Grid.RowSpan="2" 
+                                    Grid.Column="2" 
+                                    Opacity="0.7" 
+                                    HorizontalOptions="StartAndExpand" 
+                                    Margin="10,0,0,0">
+
+                                    <ImageButton.Behaviors>
+                                        <p:EventToCommandBehavior 
+                                            Command="{Binding  Path=BindingContext.ScheduleEdit , Source={x:Reference Name=PrescriptionSchedulePage}}" 
+                                            EventName="Clicked" 
+                                             CommandParameter="{Binding}" />
+                                    </ImageButton.Behaviors>
+                                </ImageButton>
+                                
                                 <ImageButton x:Name="Remove" 
                                             Grid.RowSpan="2" 
-                                             Grid.Column="2" 
+                                             Grid.Column="3" 
                                              Opacity="0.7"
                                              Command="{Binding BindingContext.RemoveScheduleFromListCommand,
-                                                       Source={x:Reference PrescriptionSchedule}}"
+                                                       Source={x:Reference Name=PrescriptionSchedulePage}}"
                                              CommandParameter="{Binding .}"
                                              Source="Remove.png" 
                                              HorizontalOptions="StartAndExpand" 

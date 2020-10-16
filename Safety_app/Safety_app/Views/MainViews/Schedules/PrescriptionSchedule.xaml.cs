@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Safety_app.Views.MainViews.Schedules
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class PrescriptionSchedule : ContentPage
     {
         public PrescriptionSchedule()

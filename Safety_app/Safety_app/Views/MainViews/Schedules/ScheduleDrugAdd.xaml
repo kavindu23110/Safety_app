@@ -28,18 +28,57 @@
                  
                 </Picker.Behaviors>
             </Picker>
-            <ListView x:Name="Schedulelist" ItemsSource="{Binding lstScheduleDrugs}">
+            <ListView x:Name="Schedulelist" ItemsSource="{Binding lstScheduleDrugs}"  Margin="0,20,0,20">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                          
                             <Grid>
-                                <Label Text="{Binding Name}" FontAttributes="Bold" Grid.Column="0"  HorizontalOptions="CenterAndExpand"/>
-                                <Entry Placeholder="Qty" Grid.Column="1" x:Name="Quantity" Text="{Binding Quantity}">
+
+                                <Grid.RowDefinitions >
+                                    <RowDefinition  ></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                    <ColumnDefinition Width="*"   ></ColumnDefinition>
+                                    <ColumnDefinition Width="*"   ></ColumnDefinition>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{StaticResource imgdrug}" 
+                                       Grid.RowSpan="2" 
+                                       Grid.Column="0" 
+                                       HorizontalOptions="StartAndExpand" 
+                                       Margin="20,0,0,0"></Image>
+                                
+                                <Label Text="{Binding  Name}" 
+                                       Grid.Column="1" 
+                                       Margin="20,0,0,0" 
+                                       Grid.Row="0"   
+                                       FontAttributes="Bold" 
+                                       FontSize="Medium"  
+                                       HorizontalOptions="StartAndExpand" 
+                                       TextColor="Black"></Label>
+                                
+                                <Label Text="{Binding  Name}"
+                                       Grid.Column="1"
+                                       Margin="20,0,0,0"
+                                       Grid.Row="1"
+                                       HorizontalOptions="StartAndExpand"
+                                       FontSize="Default" ></Label>
+
+                                <Entry Placeholder="Qty"
+                                       Grid.Column="2"
+                                       Grid.RowSpan="2"
+                                       x:Name="Quantity"
+                                       Text="{Binding Quantity}" 
+                                       HorizontalOptions="StartAndExpand">
             
                                 </Entry>
                                 <ImageButton x:Name="Remove" 
-                                             Grid.Column="2"
+                                             Grid.Column="3"
+                                             Grid.RowSpan="2"
                                              Command="{Binding BindingContext.RemoveDrugFromListCommand,
                                     Source={x:Reference ScheduleDrugAddPage}}"
                                              CommandParameter="{Binding .}"

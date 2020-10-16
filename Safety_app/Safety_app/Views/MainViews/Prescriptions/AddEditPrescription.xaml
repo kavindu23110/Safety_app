@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Safety_app.Views.MainViews.Prescriptions.AddEditPrescription"
              xmlns:local="clr-namespace:Safety_app.ViewModels.Prescriptions"
-              xmlns:behavior="clr-namespace:Safety_app.Validation.Behaviors"
+              xmlns:behavior="clr-namespace:Safety_app.Validation.Behaviors" xmlns:customization="clr-namespace:Safety_app.Customization"
              Title="AddEditPrescription">
     <ContentPage.Resources>
         <Style TargetType="Label">
@@ -21,18 +21,18 @@
         <StackLayout Margin="10">
 
             <Label Text="Name"></Label>
-            <Entry x:Name="name" Text="{Binding Path=prescription.Name,Mode=TwoWay}" >
-                <Entry.Behaviors>
-                    <behavior:NullValidationbehavior ></behavior:NullValidationbehavior>
-                </Entry.Behaviors>
-            </Entry>
+            <customization:CEntry x:Name="name" Text="{Binding Path=prescription.Name,Mode=TwoWay}" >
+                <customization:CEntry.Behaviors>
+                    <behavior:NullValidationbehavior  Message="Required" ></behavior:NullValidationbehavior>
+                </customization:CEntry.Behaviors>
+            </customization:CEntry>
 
             <Label Text="Doctor name"></Label>
-            <Entry x:Name="Doctorname" Text="{Binding Path=prescription.Doctorname,Mode=TwoWay}" >
-                <Entry.Behaviors>
-                    <behavior:NullValidationbehavior ></behavior:NullValidationbehavior>
-                </Entry.Behaviors>
-            </Entry>
+            <customization:CEntry  x:Name="Doctorname" Text="{Binding Path=prescription.Doctorname,Mode=TwoWay}" >
+                <customization:CEntry.Behaviors>
+                    <behavior:NullValidationbehavior  Message="Required" ></behavior:NullValidationbehavior>
+                </customization:CEntry.Behaviors>
+            </customization:CEntry>
 
             <Label Text="Start Date"/>
             <DatePicker x:Name="startdate" Date="{Binding Path=prescription.StartDate,Mode=TwoWay}"  >

@@ -1,25 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Safety_app.ViewModels.Schedules" 
-             xmlns:behaviors="clr-namespace:EventToCommandBehavior" xmlns:p="clr-namespace:Pillar;assembly=Pillar"
+             xmlns:p="clr-namespace:Pillar;assembly=Pillar"
              x:Class="Safety_app.Views.MainViews.Schedules.index"
              Title="Schedules"
              x:Name="ScheduleIndexpage">
-
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Name="save"  Command="{Binding SaveCommand }"	  Order="Primary" Priority="0" />
-
-    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
 
 
-        <StackLayout>
+        <StackLayout Margin="10">
 
             <ListView ItemsSource="{Binding lstSchedules }"  
-                      SelectionMode="Single" 
-                      SeparatorVisibility="Default"
+                     
                       x:Name="schedulelistview" >
                
                 <ListView.ItemTemplate  >
@@ -27,7 +20,74 @@
                         <ViewCell >
 
                             <Grid>
-                                <Label Text="{Binding Name}" FontAttributes="Bold"    HorizontalOptions="CenterAndExpand" />
+                                
+                                <Grid.RowDefinitions >
+                                    <RowDefinition  ></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                    <ColumnDefinition Width="*"   ></ColumnDefinition>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                
+                
+                                
+                                <Image Source="{StaticResource imgPrescription}" 
+                                       Grid.RowSpan="2" 
+                                       Grid.Column="0" 
+                                       HorizontalOptions="StartAndExpand" 
+                                       Margin="20,0,0,0"></Image>
+                                
+                                <Label Text="{Binding  Name}" 
+                                       Grid.Column="1" Margin="20,0,0,0" 
+                                       Grid.Row="0"   
+                                       FontAttributes="Bold" 
+                                       FontSize="Medium"  
+                                       HorizontalOptions="StartAndExpand" 
+                                       TextColor="Black"></Label>
+                                
+                                <Label Text="{Binding  Name}" 
+                                       Grid.Column="1" 
+                                       Margin="20,0,0,0" 
+                                       Grid.Row="1"  
+                                       HorizontalOptions="StartAndExpand" 
+                                       FontSize="Default" ></Label>
+                                
+                                <ImageButton   IsEnabled="True"
+                                    Source="{StaticResource imgEdit}"  
+                                    Grid.RowSpan="2" 
+                                    Grid.Column="2" 
+                                    Opacity="0.7" 
+                                    HorizontalOptions="StartAndExpand" 
+                                    Margin="10,0,0,0">
+
+                                    <ImageButton.Behaviors>
+                                        <p:EventToCommandBehavior 
+                                            Command="{Binding  Path=BindingContext.ScheduleEdit , Source={x:Reference Name=ScheduleIndexpage}}" 
+                                            EventName="Clicked" 
+                                             CommandParameter="{Binding}" />
+                                    </ImageButton.Behaviors>
+                                </ImageButton>
+
+                                <ImageButton   IsEnabled="True"
+                                    Source="{StaticResource imgRemove}"  
+                                    Grid.RowSpan="2" 
+                                    Grid.Column="3" 
+                                    Opacity="0.7" 
+                                    HorizontalOptions="StartAndExpand" 
+                                    Margin="10,0,0,0">
+
+                                    <ImageButton.Behaviors>
+                                        <p:EventToCommandBehavior 
+                                            Command="{Binding  Path=BindingContext.Scheduledelete , Source={x:Reference Name=ScheduleIndexpage}}" 
+                                            EventName="Clicked" 
+                                             CommandParameter="{Binding}" />
+                                    </ImageButton.Behaviors>
+                                </ImageButton>
+                                
                             </Grid>
 
                         </ViewCell>
@@ -48,8 +108,13 @@
                 </ListView.Behaviors>
             </ListView>
             
-            <Button ImageSource="add.png" WidthRequest="70" HeightRequest="70" HorizontalOptions="End" Margin="10" BorderRadius="30" 
-                     Command="{Binding addnewSchedule}"		
+            <Button ImageSource="add.png"
+                    WidthRequest="70" 
+                    HeightRequest="70" 
+                    HorizontalOptions="End" 
+                    Margin="10" 
+                    BorderRadius="30" 
+                    Command="{Binding addnewSchedule}"		
                     ></Button>
         </StackLayout>
     </ContentPage.Content>

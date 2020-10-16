@@ -1,20 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:local="clr-namespace:Safety_app.ViewModels.Drugs"
+              xmlns:local="clr-namespace:Safety_app.ViewModels.Drugs" xmlns:customization="clr-namespace:Safety_app.Customization" xmlns:behavior="clr-namespace:Safety_app.Validation.Behaviors"
              x:Class="Safety_app.Views.MainViews.Drugs.AddNewDrug">
-   
 
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Padding" Value="10,0,10,0"></Setter>
+            <Setter Property="FontSize" Value="Default"></Setter>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+        </Style>
+    </ContentPage.Resources>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="save"  Command="{Binding Source={RelativeSource AncestorType={x:Type local:AddNewdrugViewModel}}, Path=SaveDrug}"	  Order="Primary" Priority="0" />
 
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="10">
             <Label Text="Drug name" />
-            <Entry x:Name="Drugname" Text="{Binding Path=drug.Name ,Mode=TwoWay}" ></Entry>
+            <customization:CEntry x:Name="Drugname" Text="{Binding Path=drug.Name ,Mode=TwoWay}" >
+                <customization:CEntry.Behaviors>
+                    <behavior:NullValidationbehavior  Message="Required" ></behavior:NullValidationbehavior>
+                </customization:CEntry.Behaviors>
+            </customization:CEntry>
+            
+            
             <Label Text="Notes"/>
-            <Editor x:Name="Details" Text="{Binding Path=drug.Notes ,Mode=TwoWay}"></Editor>
+            <Editor x:Name="Details"  Text="{Binding Path=drug.Notes ,Mode=TwoWay}"></Editor>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
