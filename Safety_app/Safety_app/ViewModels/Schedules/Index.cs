@@ -20,6 +20,7 @@ namespace Safety_app.ViewModels.Schedules
             SelectScheduleCommand = new Command(OnSelectSchedule);
             Scheduledelete = new Command(OnScheduledeleteAsync);
             ScheduleEdit = new Command(OnScheduleEditAsync);
+           
         }
 
         private async void OnScheduleEditAsync(object obj)
@@ -31,7 +32,12 @@ namespace Safety_app.ViewModels.Schedules
 
         private async void OnScheduledeleteAsync(object obj)
         {
-           var schedule = (Models.Shedule)obj;
+            if (!await StaticFunctions.DisplayAlert_DeleteAsync())
+            {
+                return;
+            }
+
+             var schedule = (Models.Shedule)obj;
            
             var lst=await App.Database.GetDrugSchedulePrescriptionOperator().FindAsync(p => p.ScheduleId == schedule.Id && p.IsActive == 1);
             foreach (var item in lst)

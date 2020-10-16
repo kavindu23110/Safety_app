@@ -22,16 +22,20 @@ namespace Safety_app.ViewModels.Prescriptions
         {
             addnewPrescription = new Command(OnaddnewPrescription);
             Prescriptionselected = new Command(OnPrescriptionselectedAsync);
-            Prescriptiondelete = new Command(OnPrescriptiondelete);
+            Prescriptiondelete = new Command(OnPrescriptiondeleteAsync);
             selectedPrescription = new Prescription();
         }
 
-        private void OnPrescriptiondelete(object obj)
+        private async void OnPrescriptiondeleteAsync(object obj)
         {
+            if (!await StaticFunctions.DisplayAlert_DeleteAsync())
+            {
+                return;
+            }
             var prescription = (Models.Prescription)obj;
             lstprescription.Remove(prescription);
             prescription.IsActive = 0;
-            App.Database.GetPrescriptionOperator().updateAsync(prescription);
+            await App.Database.GetPrescriptionOperator().updateAsync(prescription);
 
         }
 
