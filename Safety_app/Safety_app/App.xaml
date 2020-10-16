@@ -31,6 +31,10 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+        
+                <ImageSource x:Key="imgPrescription">Prescription.png</ImageSource>
+            <ImageSource x:Key="imgRemove">remove.png</ImageSource>
+            <ImageSource x:Key="imgTimer">Timer.png</ImageSource>
             
 
         </ResourceDictionary>        

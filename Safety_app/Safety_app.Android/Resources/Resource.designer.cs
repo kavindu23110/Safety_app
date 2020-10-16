@@ -8376,7 +8376,7 @@ namespace Safety_app.Droid
 			public const int tab_feed = 2131165306;
 			
 			// aapt resource value: 0x7F07007B
-			public const int timer = 2131165307;
+			public const int Timer = 2131165307;
 			
 			// aapt resource value: 0x7F07007C
 			public const int tooltip_frame_dark = 2131165308;

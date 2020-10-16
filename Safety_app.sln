@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Safety_app.iOS", "Safety_ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Safety_app", "Safety_app\Safety_app\Safety_app.csproj", "{579E5FDD-4B4D-42CB-98D6-7B5BB136D98C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Safety_app.Data", "Safety_app.Data\Safety_app.Data.csproj", "{9F016C2C-52EB-4B4B-8B42-F6A27417AFC2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,18 +73,6 @@ Global
 		{579E5FDD-4B4D-42CB-98D6-7B5BB136D98C}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{579E5FDD-4B4D-42CB-98D6-7B5BB136D98C}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{579E5FDD-4B4D-42CB-98D6-7B5BB136D98C}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
-		{9F016C2C-52EB-4B4B-8B42-F6A27417AFC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F016C2C-52EB-4B4B-8B42-F6A27417AFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F016C2C-52EB-4B4B-8B42-F6A27417AFC2}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{9F016C2C-52EB-4B4B-8B42-F6A27417AFC2}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{9F016C2C-52EB-4B4B-8B42-F6A27417AFC2}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{9F016C2C-52EB-4B4B-8B42-F6A27417AFC2}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{9F016C2C-52EB-4B4B-8B42-F6A27417AFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F016C2C-52EB-4B4B-8B42-F6A27417AFC2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F016C2C-52EB-4B4B-8B42-F6A27417AFC2}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{9F016C2C-52EB-4B4B-8B42-F6A27417AFC2}.Release|iPhone.Build.0 = Release|Any CPU
-		{9F016C2C-52EB-4B4B-8B42-F6A27417AFC2}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{9F016C2C-52EB-4B4B-8B42-F6A27417AFC2}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

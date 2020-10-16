@@ -2,6 +2,7 @@
 using Safety_app.Helpers;
 using Safety_app.Models;
 using Safety_app.Views.MainViews.Prescriptions;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -12,6 +13,7 @@ namespace Safety_app.ViewModels.Prescriptions
     {
         public ICommand addnewPrescription { get; }
         public ICommand Prescriptionselected { get; }
+        public ICommand Prescriptiondelete { get; }
 
         public ObservableCollection<Prescription> lstprescription { get; set; }
         public Prescription selectedPrescription { get; set; }
@@ -20,7 +22,17 @@ namespace Safety_app.ViewModels.Prescriptions
         {
             addnewPrescription = new Command(OnaddnewPrescription);
             Prescriptionselected = new Command(OnPrescriptionselectedAsync);
+            Prescriptiondelete = new Command(OnPrescriptiondelete);
             selectedPrescription = new Prescription();
+        }
+
+        private void OnPrescriptiondelete(object obj)
+        {
+            var prescription = (Models.Prescription)obj;
+            lstprescription.Remove(prescription);
+            prescription.IsActive = 0;
+            App.Database.GetPrescriptionOperator().updateAsync(prescription);
+
         }
 
         private async void OnPrescriptionselectedAsync(object obj)
