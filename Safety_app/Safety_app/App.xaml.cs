@@ -12,7 +12,7 @@ namespace Safety_app
         public App()
         {
             InitializeComponent();
-            MainPage = new AddNewDrug();
+            MainPage = new AppShell();
         }
 
 

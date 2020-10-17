@@ -9,6 +9,10 @@ namespace Safety_app.Helpers
         public static async System.Threading.Tasks.Task<bool> DisplayAlert_DeleteAsync()
         {
             return await Application.Current.MainPage.DisplayAlert("Reminder", "This Action Will Delete Item Permanently", "OK", "cancel");
+        }      
+        public static async void DisplayAlert_ProvideInformationAsync(string title,string details)
+        {
+            await Application.Current.MainPage.DisplayAlert(title, details, "OK");
         }
         public static void ActivateSchedule(Shedule shedule)
         {

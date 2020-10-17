@@ -30,6 +30,8 @@
             
             <Label Text="Notes"/>
             <Editor x:Name="Details"  Text="{Binding Path=drug.Notes ,Mode=TwoWay}"></Editor>
+            <Button Text="Take A Image" Command="{Binding TakeImageCommand}"></Button>
+            <Image WidthRequest="250" HeightRequest="400" Source="{Binding Path=drug.ImageLocation ,Mode=TwoWay}"></Image>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
