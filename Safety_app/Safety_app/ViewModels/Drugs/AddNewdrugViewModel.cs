@@ -1,7 +1,9 @@
 ﻿using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Plugin.Permissions;
+using Safety_app.BOD;
 using Safety_app.Helpers;
+using Safety_app.Models;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -15,12 +17,24 @@ namespace Safety_app.ViewModels.Drugs
         public ICommand TakeImageCommand { get; set; }
         public ICommand SaveDrug { get; set; }
         public Models.Drugs drug { get; set; }
+        public bool isEdit { get; set; }
         public AddNewdrugViewModel()
         {
             TakeImageCommand = new Command(OnTakeImageAsync);
             SaveDrug = new Command(OnSaveDrugAsync);
             drug = new Models.Drugs();
 
+        }
+
+        public void LoadDrugs()
+        {
+            var cachedDrug = StateManager.GetProperties<Models.Drugs>(KeyValueDefinitions.DrugEdit);
+            if (cachedDrug != null)
+            {
+                isEdit = true;
+                drug = cachedDrug;
+                StateManager.Remove(KeyValueDefinitions.DrugEdit);
+            }
         }
 
         private async void OnTakeImageAsync(object obj)
@@ -48,7 +62,14 @@ namespace Safety_app.ViewModels.Drugs
 
         private async void OnSaveDrugAsync(object obj)
         {
-            await App.Database.GetDrugOperator().saveAsync(drug);
+            if (isEdit)
+            {
+                await App.Database.GetDrugOperator().updateAsync(drug);
+            }
+            else
+            {
+                await App.Database.GetDrugOperator().saveAsync(drug);
+            }
             await Shell.Current.GoToAsync("..");
         }
     }

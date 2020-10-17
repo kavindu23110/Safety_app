@@ -7,5 +7,6 @@
         public static string Prescription = @"Prescription";
         public static string Schedule = @"Schedule";
         public static string ScheduleEdit = @"ScheduleEdit";
+        public static string DrugEdit = @"DrugEdit";
     }
 }

@@ -50,6 +50,7 @@
                                     <ColumnDefinition Width="50"  ></ColumnDefinition>
                                     <ColumnDefinition Width="*"   ></ColumnDefinition>
                                     <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                
                                 <Image Source="{StaticResource imgdrug}" 
@@ -73,10 +74,27 @@
                                        HorizontalOptions="StartAndExpand" 
                                        FontSize="Default" ></Label>
 
+
+                                <ImageButton   IsEnabled="True"
+                                    Source="{StaticResource imgEdit}"  
+                                    Grid.RowSpan="2" 
+                                    Grid.Column="2" 
+                                    Opacity="0.7" 
+                                    HorizontalOptions="StartAndExpand" 
+                                    Margin="10,0,0,0">
+
+                                    <ImageButton.Behaviors>
+                                        <p:EventToCommandBehavior 
+                                            Command="{Binding  BindingContext.DrugEditCommand ,Source={x:Reference DrugsindexPage}}" 
+                                            EventName="Clicked" 
+                                             CommandParameter="{Binding}" />
+                                    </ImageButton.Behaviors>
+                                </ImageButton>
+
                                 <ImageButton   IsEnabled="True"
                                     Source="{StaticResource imgRemove}"  
                                     Grid.RowSpan="2" 
-                                    Grid.Column="2" 
+                                    Grid.Column="3" 
                                     Opacity="0.7" 
                                     HorizontalOptions="StartAndExpand" 
                                     Margin="10,0,0,0">

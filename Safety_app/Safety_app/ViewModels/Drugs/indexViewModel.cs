@@ -1,5 +1,6 @@
 ﻿using Safety_app.BOD;
 using Safety_app.Helpers;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -13,6 +14,7 @@ namespace Safety_app.ViewModels.Drugs
 
         public ICommand addnewDrug { get; }
         public ICommand RemoveDrugsFromListCommand { get; }
+        public ICommand DrugEditCommand { get; }
 
         public ICommand AddSelectedDrug { get; }
         public ICommand SaveDrugs { get; }
@@ -29,10 +31,17 @@ namespace Safety_app.ViewModels.Drugs
             AddSelectedDrug = new Command(OnAddSelectedDrug);
             SaveDrugs = new Command(OnSaveDrugs);
             RemoveDrugsFromListCommand = new Command(OnRemoveDrugsFromListCommand);
+            DrugEditCommand = new Command(OnDrugEditAsync);
 
             lstDrugs = new ObservableCollection<Models.Drugs>();
             lstSelectedDrugs = new ObservableCollection<Models.Drugs>();
 
+        }
+
+        private async void OnDrugEditAsync(object obj)
+        {
+            StateManager.StoreProperties<Models.Drugs>(KeyValueDefinitions.DrugEdit, obj);
+            await AppShell.Current.GoToAsync($"{nameof(Views.MainViews.Drugs.AddNewDrug)}");
         }
 
         private void OnRemoveDrugsFromListCommand(object obj)
