@@ -1,5 +1,4 @@
-﻿using Safety_app.Views;
-using Safety_app.Views.MainViews.Prescriptions;
+﻿using Safety_app.Views.MainViews.Prescriptions;
 using Safety_app.Views.MainViews.Schedules;
 using System;
 using Xamarin.Forms;
@@ -11,17 +10,16 @@ namespace Safety_app
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+
             Routing.RegisterRoute(nameof(AddEditPrescription), typeof(AddEditPrescription));
 
             Routing.RegisterRoute(nameof(Views.MainViews.Drugs.AddNewDrug), typeof(Views.MainViews.Drugs.AddNewDrug));
-            Routing.RegisterRoute(nameof(Safety_app.Views.MainViews.Drugs.index), typeof(Safety_app.Views.MainViews.Drugs.index));
+            Routing.RegisterRoute(nameof(Views.MainViews.Drugs.index), typeof(Views.MainViews.Drugs.index));
 
-            Routing.RegisterRoute(nameof(AddEditSchedule), typeof(Views.MainViews.Schedules.AddEditSchedule));
-            Routing.RegisterRoute(nameof(Safety_app.Views.MainViews.Schedules.ScheduleDrugAdd), typeof(Safety_app.Views.MainViews.Schedules.ScheduleDrugAdd));
-            Routing.RegisterRoute(nameof(Views.MainViews.Schedules.PrescriptionSchedule), typeof(Views.MainViews.Schedules.PrescriptionSchedule));
-            Routing.RegisterRoute("Scheduleindex", typeof(Safety_app.Views.MainViews.Schedules.index));
+            Routing.RegisterRoute(nameof(AddEditSchedule), typeof(AddEditSchedule));
+            Routing.RegisterRoute(nameof(ScheduleDrugAdd), typeof(ScheduleDrugAdd));
+            Routing.RegisterRoute(nameof(PrescriptionSchedule), typeof(PrescriptionSchedule));
+            Routing.RegisterRoute("Scheduleindex", typeof(Views.MainViews.Schedules.index));
 
         }
 

@@ -6,11 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\MainViews\ScheduletabView\**" />
+    <EmbeddedResource Remove="Views\MainViews\ScheduletabView\**" />
+    <None Remove="Views\MainViews\ScheduletabView\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Askaiser.Mobile.Pillar" Version="1.1.0" />
+    <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.2.9" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.113.1" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
 	  <PackageReference Include="Xamarin.Forms" Version="4.6.0.1141" />
 	  <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
 	  <PackageReference Include="Xamarin.Plugins.FluentValidation" Version="3.0.64" />
@@ -54,7 +62,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
-    <Folder Include="Views\MainViews\ScheduletabView\" />
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.Android">
+      <HintPath>..\..\..\..\..\..\..\Microsoft\Xamarin\NuGet\xamarin.forms\4.6.0.1141\lib\MonoAndroid90\Xamarin.Forms.Platform.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

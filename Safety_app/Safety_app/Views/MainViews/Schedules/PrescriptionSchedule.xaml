@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:p="clr-namespace:Pillar;assembly=Pillar"
              x:Class="Safety_app.Views.MainViews.Schedules.PrescriptionSchedule"
-             Title="PrescriptionSchedule">
+             Title="Prescription Schedule"
+             x:Name="PrescriptionSchedulePage">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem 
@@ -15,23 +16,33 @@
 
 
         <StackLayout>
-            <Label Text="Select Schedule"></Label>
+            <Label Text="Select Schedules" 
+                   FontSize="Large" 
+                   Margin="10,10,10,10" 
+                   HorizontalOptions="FillAndExpand" 
+                   Padding="10,10,10,0"></Label>
 
-            <Picker Title="Pick Your drugs"
+            <Picker Title="Add Your schedules"
                     x:Name="SchedulePicker" 
                     ItemsSource="{Binding  lstSchedules }" 
-                    ItemDisplayBinding="{Binding Name}">
+                    ItemDisplayBinding="{Binding Name}"
+                    Margin="10,0,10,10" 
+                    HorizontalOptions="Fill" 
+                    VerticalOptions="StartAndExpand" >
                 <Picker.Behaviors>
 
                     <p:EventToCommandBehavior 
                         EventName="SelectedIndexChanged"
                         Command="{Binding AddSelectedSchedule}"  
-                        CommandParameter="{Binding SelectedItem,Source={x:Reference SchedulePicker}}"  />
+                        CommandParameter="{Binding SelectedItem,Source={x:Reference Name=SchedulePicker}}"  />
                 </Picker.Behaviors>
             </Picker>
-            
+
+
+
             <ListView ItemsSource="{Binding lstSelectedSchedules }"  
                       SelectionMode="Single" 
+                      Margin="0,20,0,20" 
                       SeparatorVisibility="Default"
                       x:Name="schedulelistview" >
 
@@ -40,15 +51,64 @@
                         <ViewCell >
 
                             <Grid>
-                                <Label Text="{Binding Name}" FontAttributes="Bold"    
-                                       HorizontalOptions="CenterAndExpand" />
+                                <Grid.RowDefinitions >
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                    <ColumnDefinition Width="*"   ></ColumnDefinition>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{StaticResource imgTimer}" 
+                                       Grid.RowSpan="2" 
+                                       Grid.Column="0" 
+                                       HorizontalOptions="StartAndExpand" 
+                                       Margin="20,0,0,0"></Image>
+                                
+                                <Label Text="{Binding  Name}" 
+                                       Grid.Column="1" 
+                                       Margin="20,0,0,0" 
+                                       Grid.Row="0"   
+                                       FontAttributes="Bold" 
+                                       FontSize="Medium"  
+                                       HorizontalOptions="StartAndExpand" 
+                                       TextColor="Black"></Label>
+                                
+                                <Label Text="{Binding  Name}" 
+                                       Grid.Column="1"  
+                                       Margin="20,0,0,0" 
+                                       Grid.Row="1"  
+                                       HorizontalOptions="StartAndExpand" 
+                                       FontSize="Default" ></Label>
+                                
+                                <ImageButton   IsEnabled="True"
+                                    Source="{StaticResource imgEdit}"  
+                                    Grid.RowSpan="2" 
+                                    Grid.Column="2" 
+                                    Opacity="0.7" 
+                                    HorizontalOptions="StartAndExpand" 
+                                    Margin="10,0,0,0">
+
+                                    <ImageButton.Behaviors>
+                                        <p:EventToCommandBehavior 
+                                            Command="{Binding  Path=BindingContext.ScheduleEdit , Source={x:Reference Name=PrescriptionSchedulePage}}" 
+                                            EventName="Clicked" 
+                                             CommandParameter="{Binding}" />
+                                    </ImageButton.Behaviors>
+                                </ImageButton>
+                                
                                 <ImageButton x:Name="Remove" 
-                                             Grid.Column="2"
+                                            Grid.RowSpan="2" 
+                                             Grid.Column="3" 
+                                             Opacity="0.7"
                                              Command="{Binding BindingContext.RemoveScheduleFromListCommand,
-                                                       Source={x:Reference PrescriptionSchedule}}"
+                                                       Source={x:Reference Name=PrescriptionSchedulePage}}"
                                              CommandParameter="{Binding .}"
                                              Source="Remove.png" 
-                                             HorizontalOptions="EndAndExpand">
+                                             HorizontalOptions="StartAndExpand" 
+                                             Margin="10,0,0,0">
                                 </ImageButton>
 
                             </Grid>
@@ -61,7 +121,6 @@
                         Command="{Binding Scheduleselected}" 
                         EventName="ItemSelected" 
                          CommandParameter="{Binding SelectedItem, Source={x:Reference schedulelistview}}" />
-
                 </ListView.Behaviors>
             </ListView>
             

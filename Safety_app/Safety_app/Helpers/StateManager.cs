@@ -7,6 +7,11 @@ namespace Safety_app.Helpers
     public static class StateManager
     {
 
+        public static void Remove(String key)
+        {
+            key = key.ToUpper();
+            Application.Current.Properties.Remove(key);
+        }
 
 
 

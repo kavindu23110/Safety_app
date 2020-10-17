@@ -1,38 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:Class="Safety_app.Views.MainViews.Prescriptions.index"
-             xmlns:local="clr-namespace:Safety_app.ViewModels.Prescriptions" xmlns:p="clr-namespace:Pillar;assembly=Pillar"
+             xmlns:local="clr-namespace:Safety_app.ViewModels.Prescriptions" 
+             xmlns:p="clr-namespace:Pillar;assembly=Pillar"
+             x:Name="PrescriptionIndex"
              Title="Prescriptions">
 
 
 
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding lstprescription} "  x:Name="prescriptionlist">
+            <ListView ItemsSource="{Binding lstprescription} "  
+                      x:Name="prescriptionlist" 
+                      Margin="0,20,0,20" >
+
                 <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid>
-                                <Label HorizontalOptions="CenterAndExpand" Text="{Binding Name}"></Label>
-                                <Label HorizontalOptions="CenterAndExpand" Text="{Binding Doctorname}"></Label>
+                    <DataTemplate >
+
+                        <ViewCell >
+                            <Grid >
+                                <Grid.RowDefinitions >
+                                    <RowDefinition  ></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                    <ColumnDefinition Width="*"   ></ColumnDefinition>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{StaticResource imgPrescription}" Grid.RowSpan="2" Grid.Column="0" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"></Image>
+                                <Label Text="{Binding  Doctorname}" Grid.Column="1" Margin="20,0,0,0" Grid.Row="0"   FontAttributes="Bold" FontSize="Medium"  HorizontalOptions="StartAndExpand" TextColor="Black"></Label>
+                                <Label Text="{Binding  Doctorname}" Grid.Column="1"  Margin="20,0,0,0" Grid.Row="1"  HorizontalOptions="StartAndExpand" FontSize="Default" ></Label>
+
+                                <ImageButton   IsEnabled="True"
+                                    Source="{StaticResource imgEdit}"  
+                                    Grid.RowSpan="2" 
+                                    Grid.Column="2" 
+                                    Opacity="0.7" 
+                                    HorizontalOptions="StartAndExpand" 
+                                    Margin="10,0,0,0">
+
+                                    <ImageButton.Behaviors>
+                                        <p:EventToCommandBehavior 
+                                            Command="{Binding  Path=BindingContext.Prescriptiondelete , Source={x:Reference Name=PrescriptionIndex}}" 
+                                            EventName="Clicked" 
+                                             CommandParameter="{Binding}" />
+                                    </ImageButton.Behaviors>
+                                </ImageButton>
+
+                                <ImageButton   IsEnabled="True"
+                                    Source="{StaticResource imgRemove}"  
+                                    Grid.RowSpan="2" 
+                                    Grid.Column="2" 
+                                    Opacity="0.7" 
+                                    HorizontalOptions="StartAndExpand" 
+                                    Margin="10,0,0,0"
+                              >
+                              
+                                    <ImageButton.Behaviors>
+                                        <p:EventToCommandBehavior 
+                                            Command="{Binding  Path=BindingContext.Prescriptiondelete , Source={x:Reference Name=PrescriptionIndex}}" 
+                                                      EventName="Clicked" 
+                                                      CommandParameter="{Binding}" />
+                                    </ImageButton.Behaviors>
+                                </ImageButton>
 
                             </Grid>
 
                         </ViewCell>
                     </DataTemplate>
+
                 </ListView.ItemTemplate>
                 <ListView.Behaviors>
                     <p:EventToCommandBehavior Command="{Binding Prescriptionselected}" 
                                                       EventName="ItemSelected" 
-                                                      CommandParameter="{Binding SelectedItem, Source={x:Reference prescriptionlist}}" />
+                                                      CommandParameter="{Binding SelectedItem, Source={x:Reference Name=PrescriptionIndex}}" />
 
                 </ListView.Behaviors>
+
             </ListView>
 
-            <Button ImageSource="add.png" WidthRequest="70" HeightRequest="70" HorizontalOptions="End" Margin="10" BorderRadius="30" 
+            <Button ImageSource="add.png" 
+                    WidthRequest="70" 
+                    HeightRequest="70" 
+                    HorizontalOptions="End" 
+                    Margin="10" 
+                    BorderRadius="30" 
                      Command="{Binding Source={RelativeSource AncestorType={x:Type local:indexViewModel}}, Path=addnewPrescription}"		
                     ></Button>
         </StackLayout>

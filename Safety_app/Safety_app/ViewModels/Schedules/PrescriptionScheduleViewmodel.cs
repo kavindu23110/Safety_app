@@ -1,6 +1,7 @@
 ﻿using Safety_app.BOD;
 using Safety_app.Helpers;
 using Safety_app.Models;
+using Safety_app.Views.MainViews.Schedules;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,6 +10,7 @@ using Xamarin.Forms;
 
 namespace Safety_app.ViewModels.Schedules
 {
+
     public class PrescriptionScheduleViewmodel : BaseViewModel
     {
 
@@ -18,6 +20,7 @@ namespace Safety_app.ViewModels.Schedules
         public ICommand Scheduleselected { get; }
         public ICommand RemoveScheduleFromListCommand { get; }
         public ICommand SaveCommand { get; }
+        public ICommand ScheduleEdit { get; }
 
         public ObservableCollection<Models.Shedule> lstSchedules { get; set; }
         public ObservableCollection<Models.Shedule> lstSelectedSchedules { get; set; }
@@ -29,9 +32,17 @@ namespace Safety_app.ViewModels.Schedules
             lstSelectedSchedules = new ObservableCollection<Models.Shedule>();
             AddSelectedSchedule = new Command(OnAddSelectedschedule);
             Scheduleselected = new Command(OnScheduleselectedAsync);
+            ScheduleEdit = new Command(OnScheduleEditAsync);
             SaveCommand = new Command(OnSaveCommandAsync);
             RemoveScheduleFromListCommand = new Command(OnRemoveScheduleFromListCommand);
             loadPrescription();
+        }
+
+        private async void OnScheduleEditAsync(object obj)
+        {
+            var schedule = (Models.Shedule)obj;
+            StateManager.StoreProperties<Models.Shedule>(KeyValueDefinitions.ScheduleEdit, schedule);
+            await Shell.Current.GoToAsync($"{nameof(AddEditSchedule)}");
         }
 
         private async void OnSaveCommandAsync(object obj)
@@ -75,7 +86,7 @@ namespace Safety_app.ViewModels.Schedules
 
         public async System.Threading.Tasks.Task LoadSchedulesAsync()
         {
-            var shedules = await App.Database.GetScheduleOperator().GetAsync();
+            var shedules = await App.Database.GetScheduleOperator().FindAsync(p => p.IsActive == 1);
             lstSchedules = new ObservableCollection<Models.Shedule>(shedules);
             loadAssignedSchedulesAsync();
 
@@ -86,7 +97,7 @@ namespace Safety_app.ViewModels.Schedules
         {
 
             var selectedScheduleIds = await App.Database.GetDrugSchedulePrescriptionOperator().FindAsync(p => p.IsActive == 1 && p.PrescriptionId == currentPrescription);
-            var lstselected = lstSchedules.Where(p => (selectedScheduleIds.ToList().Select(s => s.ScheduleId)).Contains(p.Id)).ToList();
+            var lstselected = lstSchedules.Where(p => (selectedScheduleIds.ToList().Select(s => s.ScheduleId)).Contains(p.Id) && p.IsActive == 1).ToList();
             lstSelectedSchedules = new ObservableCollection<Models.Shedule>(lstselected);
             foreach (var item in lstSelectedSchedules)
             {

@@ -3,35 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Safety_app.Views.MainViews.Prescriptions.AddEditPrescription"
              xmlns:local="clr-namespace:Safety_app.ViewModels.Prescriptions"
-              xmlns:behavior="clr-namespace:Safety_app.Validation.Behaviors"
+              xmlns:behavior="clr-namespace:Safety_app.Validation.Behaviors" xmlns:customization="clr-namespace:Safety_app.Customization"
              Title="AddEditPrescription">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Padding" Value="10,0,10,0"></Setter>
+            <Setter Property="FontSize" Value="Default"></Setter>  
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+        </Style>
+    </ContentPage.Resources>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="save"  Command="{Binding savePrescription}"	  Order="Primary" Priority="0" />
 
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Margin="10">
-            <Label Text="Doctor name"
-                VerticalOptions="Center" 
-                HorizontalOptions="StartAndExpand" />
-            <Entry x:Name="Doctorname" Text="{Binding Path=prescription.Doctorname,Mode=TwoWay}" >
-                <Entry.Behaviors>
-                    <behavior:NullValidationbehavior ></behavior:NullValidationbehavior>
-                </Entry.Behaviors>
-            </Entry>
-             <Label Text="startdate"
-                VerticalOptions="Center" 
-                HorizontalOptions="StartAndExpand" />
+
+            <Label Text="Name"></Label>
+            <customization:CEntry x:Name="name" Text="{Binding Path=prescription.Name,Mode=TwoWay}" >
+                <customization:CEntry.Behaviors>
+                    <behavior:NullValidationbehavior  Message="Required" ></behavior:NullValidationbehavior>
+                </customization:CEntry.Behaviors>
+            </customization:CEntry>
+
+            <Label Text="Doctor name"></Label>
+            <customization:CEntry  x:Name="Doctorname" Text="{Binding Path=prescription.Doctorname,Mode=TwoWay}" >
+                <customization:CEntry.Behaviors>
+                    <behavior:NullValidationbehavior  Message="Required" ></behavior:NullValidationbehavior>
+                </customization:CEntry.Behaviors>
+            </customization:CEntry>
+
+            <Label Text="Start Date"/>
             <DatePicker x:Name="startdate" Date="{Binding Path=prescription.StartDate,Mode=TwoWay}"  >
                 <DatePicker.Behaviors>
                   
                 </DatePicker.Behaviors>
             </DatePicker>
 
-           <Label Text="enddate"
-                VerticalOptions="Center" 
-                HorizontalOptions="StartAndExpand" />
-            <DatePicker x:Name="endtdate" Date="{Binding Path=prescription.EndDate,Mode=TwoWay}">
+           <Label Text="End Date"/>
+            <DatePicker x:Name="endtdate" Date="{Binding Path=prescription.EndDate,Mode=TwoWay}" >
                 <DatePicker.Behaviors>
                   
                 </DatePicker.Behaviors>

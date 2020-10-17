@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:Helpers="clr-namespace:Safety_app.Helpers.Converters"
+             xmlns:customization="clr-namespace:Safety_app.Customization"
+             xmlns:behavior="clr-namespace:Safety_app.Validation.Behaviors"
              x:Class="Safety_app.Views.MainViews.Schedules.AddEditSchedule">
 
     <ContentPage.ToolbarItems>
@@ -12,18 +14,30 @@
 
     </ContentPage.ToolbarItems>
     
-    
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Padding" Value="10,0,10,0"></Setter>
+            <Setter Property="FontSize" Value="Default"></Setter>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+        </Style>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         
-        <StackLayout>
-  
-            <Label Text="Schedule name"  HorizontalOptions="CenterAndExpand"></Label>
-            <Entry Text="{Binding Path=Shedule.Name, Mode=TwoWay}"></Entry>
-            <Picker 
+        <StackLayout Margin="10">
+
+            <Label Text="Schedule name"></Label>
+            <customization:CEntry Text="{Binding Path=Shedule.Name, Mode=TwoWay}">
+                <customization:CEntry.Behaviors>
+                    <behavior:NullValidationbehavior  Message="Required" ></behavior:NullValidationbehavior>
+                </customization:CEntry.Behaviors>
+            </customization:CEntry>
+            <Label Text="Duration"></Label>
+            <Picker  Margin="0,5,0,5"
                 x:Name="picker" 
                 SelectedItem="{Binding Path=Shedule.timebase, Mode=TwoWay}" 
                 VerticalOptions="Center" 
-                Title="Duration"
+               
                 TitleColor="Red">
                 
                 <Picker.ItemsSource>
@@ -34,17 +48,31 @@
                 </Picker.ItemsSource>
                 
                 </Picker>
+            
+            
+            
             <Grid>
-                <Label HorizontalOptions="StartAndExpand">Hours</Label>
-                <Switch x:Name="ModeSelection"  IsToggled="{Binding Path=Shedule.IsInterval, Mode=TwoWay}" HorizontalOptions="CenterAndExpand"></Switch>
-                <Label HorizontalOptions="End">Specific time</Label>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label HorizontalOptions="EndAndExpand" Grid.Column="0" Grid.Row="0">Hours</Label>
+                <Switch x:Name="ModeSelection" MinimumWidthRequest="50" Grid.Column="1" Grid.Row="0"  IsToggled="{Binding Path=Shedule.IsInterval, Mode=TwoWay}" HorizontalOptions="CenterAndExpand"></Switch>
+                <Label HorizontalOptions="StartAndExpand"  Grid.Column="2" Grid.Row="0">Specific time</Label>
             </Grid>
             <Label  IsVisible="{Binding Source={x:Reference ModeSelection}, Path=IsToggled
-                ,Converter={Helpers:InverseBoolConverter}}" HorizontalOptions="CenterAndExpand">Time </Label>
+                ,Converter={Helpers:InverseBoolConverter}}">Time </Label>
             <TimePicker
                 Time="{Binding Path=Shedule.TimeSpan, Mode=TwoWay,Converter={Helpers:TimeSpanToLongConverter}}"
                 IsVisible="{Binding Source={x:Reference ModeSelection}, Path=IsToggled
-                ,Converter={Helpers:InverseBoolConverter}}"></TimePicker>
+                ,Converter={Helpers:InverseBoolConverter}}" ></TimePicker>
             
             <Grid IsVisible="{Binding Source={x:Reference ModeSelection}, Path=IsToggled}">
                 <Grid.ColumnDefinitions>

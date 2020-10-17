@@ -12,6 +12,7 @@ namespace Safety_app.ViewModels.Prescriptions
     {
         public ICommand addnewPrescription { get; }
         public ICommand Prescriptionselected { get; }
+        public ICommand Prescriptiondelete { get; }
 
         public ObservableCollection<Prescription> lstprescription { get; set; }
         public Prescription selectedPrescription { get; set; }
@@ -20,7 +21,21 @@ namespace Safety_app.ViewModels.Prescriptions
         {
             addnewPrescription = new Command(OnaddnewPrescription);
             Prescriptionselected = new Command(OnPrescriptionselectedAsync);
+            Prescriptiondelete = new Command(OnPrescriptiondeleteAsync);
             selectedPrescription = new Prescription();
+        }
+
+        private async void OnPrescriptiondeleteAsync(object obj)
+        {
+            if (!await StaticFunctions.DisplayAlert_DeleteAsync())
+            {
+                return;
+            }
+            var prescription = (Models.Prescription)obj;
+            lstprescription.Remove(prescription);
+            prescription.IsActive = 0;
+            await App.Database.GetPrescriptionOperator().updateAsync(prescription);
+
         }
 
         private async void OnPrescriptionselectedAsync(object obj)

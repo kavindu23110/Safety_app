@@ -1,10 +1,13 @@
-﻿using Xamarin.Forms;
+﻿using Safety_app.Customization;
+using Xamarin.Forms;
 
 namespace Safety_app.Validation.BaseBehaviors
 {
-    public abstract class EntryBehaviorText : Behavior<Entry>
+    public abstract class EntryBehaviorText : Behavior<CEntry>
     {
-
+        CEntry control;
+        string _placeHolder;
+        Xamarin.Forms.Color _placeHolderColor;
         public static readonly BindableProperty Errorlabelname = BindableProperty.Create("ErrorLabel", typeof(string), typeof(EntryBehaviorText), string.Empty);
         public static readonly BindableProperty ErrorMessage = BindableProperty.Create("Message", typeof(string), typeof(EntryBehaviorText), string.Empty);
         public static readonly BindableProperty DisableButton = BindableProperty.Create("DisableButton", typeof(string), typeof(DatePickerBehavior), string.Empty);
@@ -36,46 +39,45 @@ namespace Safety_app.Validation.BaseBehaviors
 
         public abstract bool Validate(TextChangedEventArgs e);
 
-        protected override void OnAttachedTo(Entry bindable)
+        protected override void OnAttachedTo(CEntry bindable)
         {
             bindable.TextChanged += HandleChanges;
+
+            control = (CEntry)bindable;
+            _placeHolder = bindable.Placeholder;
+            _placeHolderColor = bindable.PlaceholderColor;
             base.OnAttachedTo(bindable);
         }
 
         public virtual void AddValidationBehavior(object sender, bool isValid)
         {
 
-            Label errorLabel = ((Entry)sender).FindByName<Label>(Errorlabel);
-            Button Buttons = ((Entry)sender).FindByName<Button>(ButtonName);
-            if (isValid)
+            if (!isValid)
             {
-                if (errorLabel != null)
-                {
-                    errorLabel.IsVisible = false;
-                    errorLabel.Text = string.Empty;
-                }
+                control.Placeholder = Message;
+                control.PlaceholderColor = control.BorderErrorColor;
+                control.Text = string.Empty;
+                ((CEntry)sender).IsBorderErrorVisible = true;
 
-                if (Buttons != null)
-                    Buttons.IsEnabled = false && Buttons.IsEnabled;
 
             }
             else
             {
-                if (errorLabel != null)
-                {
-                    errorLabel.IsVisible = true;
-                    errorLabel.Text = (string)GetValue(ErrorMessage);
-                }
+                ((CEntry)sender).IsBorderErrorVisible = false;
+                control.Placeholder = _placeHolder;
+                control.PlaceholderColor = _placeHolderColor;
 
-                if (Buttons != null)
-                    Buttons.IsEnabled = true && Buttons.IsEnabled;
             }
         }
 
-        protected override void OnDetachingFrom(Entry bindable)
+        protected override void OnDetachingFrom(CEntry bindable)
         {
+
             bindable.TextChanged -= HandleChanges;
             base.OnDetachingFrom(bindable);
         }
+
+
+
     }
 }
