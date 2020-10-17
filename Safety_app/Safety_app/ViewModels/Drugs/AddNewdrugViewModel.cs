@@ -1,11 +1,7 @@
 ﻿using Plugin.Media;
 using Plugin.Media.Abstractions;
-using Plugin.Permissions;
 using Safety_app.BOD;
 using Safety_app.Helpers;
-using Safety_app.Models;
-using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 

@@ -1,5 +1,4 @@
 ﻿using Safety_app.Data.DatabaseOperation;
-using Safety_app.Views.MainViews.Drugs;
 using System;
 using System.IO;
 using Xamarin.Forms;

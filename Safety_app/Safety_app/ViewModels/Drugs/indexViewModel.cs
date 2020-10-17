@@ -1,6 +1,5 @@
 ﻿using Safety_app.BOD;
 using Safety_app.Helpers;
-using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
