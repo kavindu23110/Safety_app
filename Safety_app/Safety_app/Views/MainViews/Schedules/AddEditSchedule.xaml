@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:Helpers="clr-namespace:Safety_app.Helpers.Converters"
              xmlns:customization="clr-namespace:Safety_app.Customization"
+             xmlns:behavior="clr-namespace:Safety_app.Validation.Behaviors"
              x:Class="Safety_app.Views.MainViews.Schedules.AddEditSchedule">
 
     <ContentPage.ToolbarItems>

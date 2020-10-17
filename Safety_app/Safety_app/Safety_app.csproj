@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\MainViews\ScheduletabView\**" />
+    <EmbeddedResource Remove="Views\MainViews\ScheduletabView\**" />
+    <None Remove="Views\MainViews\ScheduletabView\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Askaiser.Mobile.Pillar" Version="1.1.0" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.2.9" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
@@ -51,10 +57,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
 
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\MainViews\ScheduletabView\" />
   </ItemGroup>
 
   <ItemGroup>
