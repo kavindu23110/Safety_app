@@ -1,6 +1,4 @@
-﻿
-using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Safety_app.Views.MainViews.Schedules
@@ -24,6 +22,6 @@ namespace Safety_app.Views.MainViews.Schedules
             await (this.BindingContext as Safety_app.ViewModels.Schedules.Index).LoadSchedulesAsync();
         }
 
- 
+
     }
 }

@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace Safety_app.ViewModels.Schedules
 {
-    public  class Index:BaseViewModel
+    public class Index : BaseViewModel
     {
         public ICommand SelectScheduleCommand { get; set; }
         public ICommand Scheduledelete { get; set; }
@@ -20,7 +20,7 @@ namespace Safety_app.ViewModels.Schedules
             SelectScheduleCommand = new Command(OnSelectSchedule);
             Scheduledelete = new Command(OnScheduledeleteAsync);
             ScheduleEdit = new Command(OnScheduleEditAsync);
-           
+
         }
 
         private async void OnScheduleEditAsync(object obj)
@@ -37,13 +37,13 @@ namespace Safety_app.ViewModels.Schedules
                 return;
             }
 
-             var schedule = (Models.Shedule)obj;
-           
-            var lst=await App.Database.GetDrugSchedulePrescriptionOperator().FindAsync(p => p.ScheduleId == schedule.Id && p.IsActive == 1);
+            var schedule = (Models.Shedule)obj;
+
+            var lst = await App.Database.GetDrugSchedulePrescriptionOperator().FindAsync(p => p.ScheduleId == schedule.Id && p.IsActive == 1);
             foreach (var item in lst)
             {
                 item.IsActive = 0;
-               await App.Database.GetDrugSchedulePrescriptionOperator().updateAsync(item);
+                await App.Database.GetDrugSchedulePrescriptionOperator().updateAsync(item);
             }
             lstSchedules.Remove(schedule);
             schedule.IsActive = 0;
@@ -52,12 +52,12 @@ namespace Safety_app.ViewModels.Schedules
 
         private void OnSelectSchedule(object obj)
         {
-          
+
         }
 
         public async Task LoadSchedulesAsync()
         {
-         var lst =await  App.Database.GetScheduleOperator().FindAsync(p => p.IsActive == 1);
+            var lst = await App.Database.GetScheduleOperator().FindAsync(p => p.IsActive == 1);
             lstSchedules = new ObservableCollection<Models.Shedule>(lst);
         }
     }

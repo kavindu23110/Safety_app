@@ -2,7 +2,6 @@
 using Safety_app.Helpers;
 using Safety_app.Models;
 using Safety_app.Views.MainViews.Prescriptions;
-using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;

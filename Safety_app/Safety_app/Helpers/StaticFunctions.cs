@@ -1,8 +1,5 @@
 ﻿using Safety_app.DependancyService;
 using Safety_app.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace Safety_app.Helpers

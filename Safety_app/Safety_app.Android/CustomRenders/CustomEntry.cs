@@ -1,5 +1,4 @@
-﻿using Android.Graphics;
-using Android.Graphics.Drawables;
+﻿using Android.Graphics.Drawables;
 using Safety_app.Customization;
 using Safety_app.Droid.CustomRenders;
 using System;
@@ -12,43 +11,43 @@ namespace Safety_app.Droid.CustomRenders
     [Obsolete]
     public class CustomEntryRenderer : EntryRenderer
     {
-		protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
-		{
-			base.OnElementChanged(e);
+        protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
+        {
+            base.OnElementChanged(e);
 
-			if (Control == null || e.NewElement == null) return;
+            if (Control == null || e.NewElement == null) return;
 
-			UpdateBorders();
-		}
+            UpdateBorders();
+        }
 
-		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-		{
-			base.OnElementPropertyChanged(sender, e);
+        protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            base.OnElementPropertyChanged(sender, e);
 
-			if (Control == null) return;
+            if (Control == null) return;
 
-			if (e.PropertyName == CEntry.IsBorderErrorVisibleProperty.PropertyName)
-				UpdateBorders();
-		}
+            if (e.PropertyName == CEntry.IsBorderErrorVisibleProperty.PropertyName)
+                UpdateBorders();
+        }
 
-		void UpdateBorders()
-		{
-			GradientDrawable shape = new GradientDrawable();
-			shape.SetShape(ShapeType.Rectangle);
-			shape.SetCornerRadius(0);
+        void UpdateBorders()
+        {
+            GradientDrawable shape = new GradientDrawable();
+            shape.SetShape(ShapeType.Rectangle);
+            shape.SetCornerRadius(0);
 
-			if (((CEntry)this.Element).IsBorderErrorVisible)
-			{
-				shape.SetStroke(3, ((CEntry)this.Element).BorderErrorColor.ToAndroid());
-			}
-			else
-			{
-				shape.SetStroke(3, Android.Graphics.Color.LightGray);
-				this.Control.SetBackground(shape);
-			}
+            if (((CEntry)this.Element).IsBorderErrorVisible)
+            {
+                shape.SetStroke(3, ((CEntry)this.Element).BorderErrorColor.ToAndroid());
+            }
+            else
+            {
+                shape.SetStroke(3, Android.Graphics.Color.LightGray);
+                this.Control.SetBackground(shape);
+            }
 
-			this.Control.SetBackground(shape);
-		}
+            this.Control.SetBackground(shape);
+        }
 
-	}
+    }
 }

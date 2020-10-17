@@ -52,9 +52,9 @@ namespace Safety_app.Validation.BaseBehaviors
         public virtual void AddValidationBehavior(object sender, bool isValid)
         {
 
-         if  (!isValid)
+            if (!isValid)
             {
-               control.Placeholder = Message;
+                control.Placeholder = Message;
                 control.PlaceholderColor = control.BorderErrorColor;
                 control.Text = string.Empty;
                 ((CEntry)sender).IsBorderErrorVisible = true;
