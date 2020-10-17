@@ -58,6 +58,9 @@
     <PackageReference Include="Plugin.CurrentActivity">
       <Version>2.1.0.4</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.PushNotification">
+      <Version>3.3.3</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
       <Version>5.0.1</Version>
     </PackageReference>
@@ -66,10 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BroadcastReciecvers\ScheduleReceiver.cs" />
+    <Compile Include=".NotificationService.cs" />
     <Compile Include="CustomRenders\CustomEntry.cs" />
     <Compile Include="DependancyServices\AlarmManagerService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
+    <Compile Include="NotificationHandlers\NotificationHandler.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

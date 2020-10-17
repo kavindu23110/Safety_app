@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Support.V4.App;
 using Safety_app.DependancyService;
 using Safety_app.Droid.BroadcastReciecvers;
 using Safety_app.Models;
@@ -24,6 +25,13 @@ namespace Safety_app.Droid.DependancyServices
             PendingIntent pendingIntent = PendingIntent.GetBroadcast(Forms.Context, 0, alarmIntent, PendingIntentFlags.UpdateCurrent);
             AlarmManager alarmManager = (AlarmManager)Forms.Context.GetSystemService(Context.AlarmService);
             alarmManager.Set(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + 5 * 1000, pendingIntent);
+            Notification();
+        }
+
+        [Obsolete]
+        private void Notification()
+        {
+
         }
 
         [Obsolete]

@@ -2,6 +2,8 @@
 using Android.Content;
 using Android.OS;
 using Android.Support.V4.App;
+using Android.Widget;
+using Safety_app.Droid.NotificationHandlers;
 using System;
 
 [assembly: Permission(Name = "PACKAGEIDENTIFIER.permission.C2D_MESSAGE")]
@@ -13,35 +15,33 @@ using System;
 namespace Safety_app.Droid.BroadcastReciecvers
 {
 
-    [BroadcastReceiver(Permission = "com.google.android.c2dm.permission.SEND")]
+ //   [BroadcastReceiver(Permission = "com.google.android.c2dm.permission.SEND")]
     [IntentFilter(new string[] { "com.google.android.c2dm.intent.RECEIVE" }, Categories = new string[] { "PACKAGEIDENTIFIER" })]
     [IntentFilter(new string[] { "com.google.android.c2dm.intent.REGISTRATION" }, Categories = new string[] { "PACKAGEIDENTIFIER" })]
     [IntentFilter(new string[] { "com.google.android.gcm.intent.RETRY" }, Categories = new string[] { "PACKAGEIDENTIFIER" })]
-
+    [IntentFilter(new[] { "com.xamarin.example.TEST" })]
+    [BroadcastReceiver(Enabled = true, Exported = false)]
     public class ScheduleReceiver : BroadcastReceiver
     {
         [Obsolete]
         public override void OnReceive(Context context, Intent intent)
         {
+            Context x=context.ApplicationContext;
             PowerManager.WakeLock sWakeLock;
             var pm = PowerManager.FromContext(context);
             sWakeLock = pm.NewWakeLock(WakeLockFlags.Partial, "GCM Broadcast Reciever Tag");
             sWakeLock.Acquire();
-            if (!string.IsNullOrEmpty(intent.GetStringExtra("Id")))
+
+           var ScheduleId = intent.Extras.Get("Id");
+            var ScheduleName = intent.Extras.Get("Name");
+            if (ScheduleId != null)
             {
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                .SetContentTitle(intent.GetStringExtra("Name"))
-                .SetShowWhen(true)
-                .SetContentText(intent.GetStringExtra("Name"))
-                .SetSmallIcon(2)
-                .SetVisibility(1)
-                .SetVibrate(new long[] { 1000, 1000 });
+                
+                NotificationHandler handler = new NotificationHandler();
+                handler.BuildNotification((string)ScheduleName, "Prescription time is began.Tap to Continue",(string)ScheduleId);
 
-                NotificationManager notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
-                notificationManager.Notify(1, builder.Build());
-                sWakeLock.Release();
             }
-
+            sWakeLock.Release();
 
         }
     }
