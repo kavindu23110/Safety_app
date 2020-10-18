@@ -72,6 +72,7 @@
     <Compile Include=".NotificationService.cs" />
     <Compile Include="CustomRenders\CustomEntry.cs" />
     <Compile Include="DependancyServices\AlarmManagerService.cs" />
+    <Compile Include="DependancyServices\MessageAndroid.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="NotificationHandlers\NotificationHandler.cs" />
@@ -136,6 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\file_paths.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

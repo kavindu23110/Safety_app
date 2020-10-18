@@ -29,10 +29,31 @@
                                     <ColumnDefinition Width="50"  ></ColumnDefinition>
                                     <ColumnDefinition Width="*"   ></ColumnDefinition>
                                     <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{StaticResource imgPrescription}" Grid.RowSpan="2" Grid.Column="0" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"></Image>
-                                <Label Text="{Binding  Doctorname}" Grid.Column="1" Margin="20,0,0,0" Grid.Row="0"   FontAttributes="Bold" FontSize="Medium"  HorizontalOptions="StartAndExpand" TextColor="Black"></Label>
-                                <Label Text="{Binding  Doctorname}" Grid.Column="1"  Margin="20,0,0,0" Grid.Row="1"  HorizontalOptions="StartAndExpand" FontSize="Default" ></Label>
+                                
+                                
+                                <Image Source="{StaticResource imgPrescription}"
+                                       Grid.RowSpan="2" 
+                                       Grid.Column="0" 
+                                       HorizontalOptions="StartAndExpand"
+                                       Margin="20,0,0,0"></Image>
+                                
+                                <Label Text="{Binding  Doctorname}"
+                                       Grid.Column="1" 
+                                       Margin="20,0,0,0" 
+                                       Grid.Row="0"   
+                                       FontAttributes="Bold" 
+                                       FontSize="Medium"  
+                                       HorizontalOptions="StartAndExpand" 
+                                       TextColor="Black"></Label>
+                                
+                                <Label Text="{Binding  Doctorname}" 
+                                       Grid.Column="1" 
+                                       Margin="20,0,0,0" 
+                                       Grid.Row="1"  
+                                       HorizontalOptions="StartAndExpand" 
+                                       FontSize="Default" ></Label>
 
                                 <ImageButton   IsEnabled="True"
                                     Source="{StaticResource imgEdit}"  
@@ -44,7 +65,7 @@
 
                                     <ImageButton.Behaviors>
                                         <p:EventToCommandBehavior 
-                                            Command="{Binding  Path=BindingContext.Prescriptiondelete , Source={x:Reference Name=PrescriptionIndex}}" 
+                                            Command="{Binding  Path=BindingContext.PrescriptionEdit , Source={x:Reference Name=PrescriptionIndex}}" 
                                             EventName="Clicked" 
                                              CommandParameter="{Binding}" />
                                     </ImageButton.Behaviors>
@@ -53,7 +74,7 @@
                                 <ImageButton   IsEnabled="True"
                                     Source="{StaticResource imgRemove}"  
                                     Grid.RowSpan="2" 
-                                    Grid.Column="2" 
+                                    Grid.Column="3" 
                                     Opacity="0.7" 
                                     HorizontalOptions="StartAndExpand" 
                                     Margin="10,0,0,0"

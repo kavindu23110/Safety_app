@@ -8,7 +8,8 @@
              Title="Prescription Drugs">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="save"  
+        <ToolbarItem x:Name="save"  
+                     IconImageSource="{StaticResource imgsave}"
                      Command="{Binding SaveDrugs}"	  
                      Order="Primary" Priority="0" />
 

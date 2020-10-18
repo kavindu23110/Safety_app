@@ -6,7 +6,7 @@
              Title="Add your Drugs schedule"
              x:Name="ScheduleDrugAddPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="save" Command="{Binding SaveScheduleDrug}"   Order="Primary" Priority="0" />
+        <ToolbarItem x:Name="save" IconImageSource="{StaticResource imgsave}" Command="{Binding SaveScheduleDrug}"   Order="Primary" Priority="0" />
 
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

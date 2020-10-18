@@ -25,10 +25,12 @@ namespace Safety_app.ViewModels.Schedules
 
             if (edit)
             {
+                StaticFunctions.ToastMessage_Long("Schedule Updated Successfully");
                 await App.Database.GetScheduleOperator().updateAsync(Shedule);
             }
             else
             {
+                StaticFunctions.ToastMessage_Long("Schedule Added Successfully");
                 await App.Database.GetScheduleOperator().saveAsync(Shedule);
             }
             await Shell.Current.GoToAsync("..");

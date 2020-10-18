@@ -2,6 +2,7 @@
 using Safety_app.Helpers;
 using Safety_app.Models;
 using Safety_app.Views.MainViews.Prescriptions;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -13,6 +14,7 @@ namespace Safety_app.ViewModels.Prescriptions
         public ICommand addnewPrescription { get; }
         public ICommand Prescriptionselected { get; }
         public ICommand Prescriptiondelete { get; }
+        public ICommand PrescriptionEdit { get; }
 
         public ObservableCollection<Prescription> lstprescription { get; set; }
         public Prescription selectedPrescription { get; set; }
@@ -22,7 +24,15 @@ namespace Safety_app.ViewModels.Prescriptions
             addnewPrescription = new Command(OnaddnewPrescription);
             Prescriptionselected = new Command(OnPrescriptionselectedAsync);
             Prescriptiondelete = new Command(OnPrescriptiondeleteAsync);
+            PrescriptionEdit = new Command(OnPrescriptionEdit);
+
             selectedPrescription = new Prescription();
+        }
+
+        private void OnPrescriptionEdit(object obj)
+        {
+            StateManager.StoreProperties<Prescription>(KeyValueDefinitions.PrescriptionEdit, obj);
+            OnaddnewPrescription(obj);
         }
 
         private async void OnPrescriptiondeleteAsync(object obj)
@@ -40,6 +50,7 @@ namespace Safety_app.ViewModels.Prescriptions
 
         private async void OnPrescriptionselectedAsync(object obj)
         {
+            var t=(Prescription)obj;
             StateManager.StoreProperties<Prescription>(KeyValueDefinitions.Prescription, obj);
             await Shell.Current.GoToAsync($"{nameof(Views.MainViews.Schedules.PrescriptionSchedule)}");
         }

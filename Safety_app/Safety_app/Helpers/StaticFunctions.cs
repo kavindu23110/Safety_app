@@ -1,4 +1,5 @@
 ﻿using Safety_app.DependancyService;
+using Safety_app.DependancyServices;
 using Safety_app.Models;
 using Xamarin.Forms;
 
@@ -24,6 +25,16 @@ namespace Safety_app.Helpers
         {
             ITaskSchedular taskSchedular = DependencyService.Get<ITaskSchedular>();
             taskSchedular.TimerDeactivateSchedule(shedule);
+        }
+        public static void ToastMessage_Long(string message)
+        {
+            IMessage toast = DependencyService.Get<IMessage>();
+            toast.LongAlert(message);
+        }  
+        public static void ToastMessage_Short(string message)
+        {
+            IMessage toast = DependencyService.Get<IMessage>();
+            toast.ShortAlert(message);
         }
 
 

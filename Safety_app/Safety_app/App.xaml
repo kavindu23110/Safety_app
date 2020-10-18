@@ -37,6 +37,7 @@
             <ImageSource x:Key="imgTimer">Timer.png</ImageSource>
             <ImageSource x:Key="imgdrug">drugs.png</ImageSource>
             <ImageSource x:Key="imgEdit">Edit.png</ImageSource>
+            <ImageSource x:Key="imgsave">save.png</ImageSource>
             
 
         </ResourceDictionary>        

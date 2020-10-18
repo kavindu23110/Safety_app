@@ -15,7 +15,7 @@
     </ContentPage.Resources>
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="save"  Command="{Binding Source={RelativeSource AncestorType={x:Type local:AddNewdrugViewModel}}, Path=SaveDrug}"	  Order="Primary" Priority="0" />
+        <ToolbarItem x:Name="save" IconImageSource="{StaticResource imgsave}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:AddNewdrugViewModel}}, Path=SaveDrug}"	  Order="Primary" Priority="0" />
 
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -23,15 +23,20 @@
             <Label Text="Drug name" />
             <customization:CEntry x:Name="Drugname" Text="{Binding Path=drug.Name ,Mode=TwoWay}" >
                 <customization:CEntry.Behaviors>
-                    <behavior:NullValidationbehavior  Message="Required" ></behavior:NullValidationbehavior>
+                    <behavior:NullValidationbehavior  Errorlabel="DoctornameError"
+                                                      ToolbarItemName="save"
+                                                      Message="This Field is required" 
+                                                      Placeholder="True"></behavior:NullValidationbehavior>
                 </customization:CEntry.Behaviors>
             </customization:CEntry>
-            
-            
+            <Label x:Name="DrugnameError"  IsVisible="False"></Label>
+
             <Label Text="Notes"/>
             <Editor x:Name="Details"  Text="{Binding Path=drug.Notes ,Mode=TwoWay}"></Editor>
             <Button Text="Take A Image" Command="{Binding TakeImageCommand}"></Button>
-            <Image WidthRequest="250" HeightRequest="400" Source="{Binding Path=drug.ImageLocation ,Mode=TwoWay}"></Image>
+            <Image WidthRequest="250"
+                   HeightRequest="400"
+                   Source="{Binding Path=drug.ImageLocation ,Mode=TwoWay}"></Image>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

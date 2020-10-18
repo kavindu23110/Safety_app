@@ -13,42 +13,64 @@
         </Style>
     </ContentPage.Resources>
     
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Name="save"  Command="{Binding savePrescription}"	  Order="Primary" Priority="0" />
+    <ContentPage.ToolbarItems >
+        <ToolbarItem x:Name="save" IconImageSource="{StaticResource imgsave}"  Command="{Binding savePrescription}" 	  Order="Primary" Priority="0" />
 
     </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout Margin="10">
 
             <Label Text="Name"></Label>
-            <customization:CEntry x:Name="name" Text="{Binding Path=prescription.Name,Mode=TwoWay}" >
+            <customization:CEntry x:Name="name" 
+                                  Text="{Binding Path=prescription.Name,Mode=TwoWay}" >
                 <customization:CEntry.Behaviors>
-                    <behavior:NullValidationbehavior  Message="Required" ></behavior:NullValidationbehavior>
+                    <behavior:NullValidationbehavior  Message="This Field is required" 
+                                                      Errorlabel="nameError"
+                                                      Placeholder="True"
+                                                      ToolbarItemName="save" ></behavior:NullValidationbehavior>
                 </customization:CEntry.Behaviors>
             </customization:CEntry>
+            <Label x:Name="nameError"  IsVisible="True"></Label>
 
-            <Label Text="Doctor name"></Label>
-            <customization:CEntry  x:Name="Doctorname" Text="{Binding Path=prescription.Doctorname,Mode=TwoWay}" >
+            <Label Text="Doctor name" ></Label>
+            <customization:CEntry  x:Name="Doctorname" 
+                                   Text="{Binding Path=prescription.Doctorname,Mode=TwoWay}" >
                 <customization:CEntry.Behaviors>
-                    <behavior:NullValidationbehavior  Message="Required" ></behavior:NullValidationbehavior>
+                    <behavior:NullValidationbehavior  Message="This Field is required" 
+                                                      Placeholder="True"
+                                                      Errorlabel="DoctornameError"
+                                                      ToolbarItemName="save" ></behavior:NullValidationbehavior>
                 </customization:CEntry.Behaviors>
             </customization:CEntry>
+            <Label x:Name="DoctornameError"  IsVisible="False"></Label>
 
             <Label Text="Start Date"/>
-            <DatePicker x:Name="startdate" Date="{Binding Path=prescription.StartDate,Mode=TwoWay}"  >
+            <DatePicker x:Name="startdate" 
+                        Date="{Binding Path=prescription.StartDate,Mode=TwoWay}"  >
                 <DatePicker.Behaviors>
-                  
+                    <behavior:MindateValidationBehavior Message="Date is less than current" 
+                                                        Errorlabel="startdateError"
+                                                      ToolbarItemName="save"></behavior:MindateValidationBehavior>
                 </DatePicker.Behaviors>
             </DatePicker>
+            <Label x:Name="startdateError"  IsVisible="False"></Label>
 
-           <Label Text="End Date"/>
-            <DatePicker x:Name="endtdate" Date="{Binding Path=prescription.EndDate,Mode=TwoWay}" >
+            <Label Text="End Date"/>
+            <DatePicker x:Name="endtdate"
+                        Date="{Binding Path=prescription.EndDate,Mode=TwoWay}" >
                 <DatePicker.Behaviors>
-                  
+                    <behavior:MindateValidationBehavior Message="Date is less than current" 
+                                                        Errorlabel="endtdateError"
+                                                      ToolbarItemName="save"></behavior:MindateValidationBehavior>
                 </DatePicker.Behaviors>
             </DatePicker>
-            <Button Text="ADD Drugs +"  Command="{Binding Source={RelativeSource AncestorType={x:Type local:AddEditPrescriptionViewModel}}, Path=ADDEditDrugs}"></Button>
-            <Button Text="ADD SCHEDULES +"  Command="{Binding Source={RelativeSource AncestorType={x:Type local:AddEditPrescriptionViewModel}}, Path=ADDEditSchedules}"></Button>
+            <Label x:Name="endtdateError"  IsVisible="False"></Label>
+            
+            <Button Text="ADD Drugs +"  
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:AddEditPrescriptionViewModel}}, Path=ADDEditDrugs}"></Button>
+            <Button Text="ADD SCHEDULES +"  
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:AddEditPrescriptionViewModel}}, Path=ADDEditSchedules}"></Button>
 
         </StackLayout>
     </ContentPage.Content>

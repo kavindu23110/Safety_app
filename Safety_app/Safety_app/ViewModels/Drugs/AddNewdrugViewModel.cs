@@ -60,10 +60,12 @@ namespace Safety_app.ViewModels.Drugs
         {
             if (isEdit)
             {
+                StaticFunctions.ToastMessage_Long("Drug Updated Successfully");
                 await App.Database.GetDrugOperator().updateAsync(drug);
             }
             else
             {
+                StaticFunctions.ToastMessage_Long("Drug Added Successfully");
                 await App.Database.GetDrugOperator().saveAsync(drug);
             }
             await Shell.Current.GoToAsync("..");

@@ -10,8 +10,16 @@ namespace Safety_app.Validation.BaseBehaviors
         Xamarin.Forms.Color _placeHolderColor;
         public static readonly BindableProperty Errorlabelname = BindableProperty.Create("ErrorLabel", typeof(string), typeof(EntryBehaviorText), string.Empty);
         public static readonly BindableProperty ErrorMessage = BindableProperty.Create("Message", typeof(string), typeof(EntryBehaviorText), string.Empty);
-        public static readonly BindableProperty DisableButton = BindableProperty.Create("DisableButton", typeof(string), typeof(DatePickerBehavior), string.Empty);
+        public static readonly BindableProperty DisableButton = BindableProperty.Create("DisableButton", typeof(string), typeof(EntryBehaviorText), string.Empty);
+        public static readonly BindableProperty Toolbar = BindableProperty.Create("ToolbarItem", typeof(string), typeof(EntryBehaviorText), string.Empty);
+        public static readonly BindableProperty IsOnPlaceholder = BindableProperty.Create("IsOnPlaceholder", typeof(bool), typeof(EntryBehaviorText), false);
 
+
+        public bool Placeholder
+        {
+            get { return (bool)GetValue(IsOnPlaceholder); }
+            set { SetValue(IsOnPlaceholder, value); }
+        }
 
         public string Errorlabel
         {
@@ -29,6 +37,11 @@ namespace Safety_app.Validation.BaseBehaviors
         {
             get { return (string)GetValue(DisableButton); }
             set { SetValue(DisableButton, value); }
+        }     
+        public string ToolbarItemName
+        {
+            get { return (string)GetValue(Toolbar); }
+            set { SetValue(Toolbar, value); }
         }
 
 
@@ -51,22 +64,59 @@ namespace Safety_app.Validation.BaseBehaviors
 
         public virtual void AddValidationBehavior(object sender, bool isValid)
         {
-
+            Label errorLabel = ((CEntry)sender).FindByName<Label>(Errorlabel);
+            Button Buttons = ((CEntry)sender).FindByName<Button>(ButtonName);
+            ToolbarItem toolbar = ((CEntry)sender).FindByName<ToolbarItem>(ToolbarItemName);
             if (!isValid)
             {
-                control.Placeholder = Message;
-                control.PlaceholderColor = control.BorderErrorColor;
-                control.Text = string.Empty;
+                
                 ((CEntry)sender).IsBorderErrorVisible = true;
+                if (Placeholder)
+                {
+                    control.Placeholder = Message;
+                    control.PlaceholderColor = control.BorderErrorColor;
+                    control.Text = string.Empty;
+                }
+                else
+                {
+                    if (errorLabel != null)
+                    {
+                        errorLabel.IsVisible = true;
+                        errorLabel.Text = Message;
+                        errorLabel.TextColor = Xamarin.Forms.Color.Red;
 
 
+                    }
+                }
+
+                if (Buttons != null)
+                    Buttons.IsEnabled = false && Buttons.IsEnabled;
+
+              
+                
+                if (toolbar != null)
+                    toolbar.IsEnabled = false ;
             }
             else
             {
                 ((CEntry)sender).IsBorderErrorVisible = false;
-                control.Placeholder = _placeHolder;
-                control.PlaceholderColor = _placeHolderColor;
+                
+                if (Placeholder)
+                {
+                    control.Placeholder = _placeHolder;
+                    control.PlaceholderColor = _placeHolderColor;
+                }
+                else
+                {
+                    if (errorLabel != null)
+                    {
+                        errorLabel.IsVisible = false;
 
+                    }
+                }
+                if (toolbar != null)
+                     toolbar.IsEnabled = true;
+              
             }
         }
 

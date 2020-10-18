@@ -9,12 +9,12 @@ namespace Safety_app.Helpers
 {
     public class ScheduleTimeCalculation
     {
-        public string ScheduleId { get; set; }
+        public string _ScheduleId { get; set; }
 
         public ScheduleTimeCalculation(String ScheduleId)
         {
 
-            this.ScheduleId = ScheduleId;
+            this._ScheduleId = ScheduleId;
 
         }
         public ScheduleTimeCalculation()
@@ -25,7 +25,7 @@ namespace Safety_app.Helpers
         public void ReAddScheduleCalculation(object scheduleId)
         {
 
-            var schedule = LoadSchedulebyId((string)ScheduleId).Result;
+            var schedule = LoadSchedulebyId((string)scheduleId).Result;
             if (schedule.IsTimeBased)
             {
                 var estimatedTime = DateTime.Now.AddDays(1);
@@ -46,7 +46,7 @@ namespace Safety_app.Helpers
 
         public void AddnewSchedule()
         {
-            var schedule = LoadSchedulebyId(ScheduleId).Result;
+            var schedule = LoadSchedulebyId(_ScheduleId).Result;
             if (schedule.IsTimeBased)
             {
                 TimeBasedScheduleCalculation(schedule);
@@ -60,7 +60,7 @@ namespace Safety_app.Helpers
 
         private System.Threading.Tasks.Task<Models.Shedule> LoadSchedulebyId(string scheduleId)
         {
-            return App.Database.GetScheduleOperator().GetSelectedAsync(p => p.Id == ScheduleId);
+            return App.Database.GetScheduleOperator().GetSelectedAsync(p => p.Id == scheduleId);
         }
 
 

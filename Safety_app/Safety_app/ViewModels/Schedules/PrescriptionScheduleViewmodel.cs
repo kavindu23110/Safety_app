@@ -71,7 +71,7 @@ namespace Safety_app.ViewModels.Schedules
         private async void OnScheduleselectedAsync(object obj)
         {
             StateManager.StoreProperties<Models.Shedule>(KeyValueDefinitions.Schedule, obj);
-            await AppShell.Current.GoToAsync($"{nameof(Safety_app.Views.MainViews.Schedules.ScheduleDrugAdd)}");
+            await AppShell.Current.GoToAsync($"{nameof(ScheduleDrugAdd)}");
         }
 
         private void OnAddSelectedschedule(object obj)

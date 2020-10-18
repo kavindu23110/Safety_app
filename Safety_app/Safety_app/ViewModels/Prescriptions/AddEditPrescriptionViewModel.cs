@@ -1,5 +1,7 @@
-﻿using Safety_app.Helpers;
+﻿using Safety_app.BOD;
+using Safety_app.Helpers;
 using Safety_app.Models;
+using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -8,7 +10,7 @@ namespace Safety_app.ViewModels.Prescriptions
     public class AddEditPrescriptionViewModel
     {
         public Prescription prescription { get; set; }
-
+        public bool isEdit=false;
         public ICommand savePrescription { get; }
         public ICommand ADDEditDrugs { get; private set; }
         public ICommand ADDEditSchedules { get; private set; }
@@ -20,6 +22,14 @@ namespace Safety_app.ViewModels.Prescriptions
             ADDEditDrugs = new Command(onAddDrugsAsync);
             ADDEditSchedules = new Command(onAddEditSchedules);
             prescription = new Prescription();
+            loadprescription();
+        }
+
+        private void loadprescription()
+        {
+            prescription=StateManager.GetProperties<Prescription>(KeyValueDefinitions.PrescriptionEdit);
+            StateManager.Remove(KeyValueDefinitions.PrescriptionEdit);
+            isEdit = !string.IsNullOrEmpty(prescription.Name);
         }
 
         private async void onAddEditSchedules(object obj)
@@ -37,7 +47,14 @@ namespace Safety_app.ViewModels.Prescriptions
 
         private async void OnsavePrescription(object obj)
         {
-            await App.Database.GetPrescriptionOperator().saveAsync(prescription);
+            if (isEdit)
+            {
+                await App.Database.GetPrescriptionOperator().updateAsync(prescription);
+            }
+            else
+            {
+                await App.Database.GetPrescriptionOperator().saveAsync(prescription);
+            }
             await Shell.Current.GoToAsync("..");
         }
     }
