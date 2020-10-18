@@ -10,7 +10,7 @@ namespace Safety_app.ViewModels.Prescriptions
     public class AddEditPrescriptionViewModel
     {
         public Prescription prescription { get; set; }
-        public bool isEdit=false;
+        public bool isEdit = false;
         public ICommand savePrescription { get; }
         public ICommand ADDEditDrugs { get; private set; }
         public ICommand ADDEditSchedules { get; private set; }
@@ -27,7 +27,7 @@ namespace Safety_app.ViewModels.Prescriptions
 
         private void loadprescription()
         {
-            prescription=StateManager.GetProperties<Prescription>(KeyValueDefinitions.PrescriptionEdit);
+            prescription = StateManager.GetProperties<Prescription>(KeyValueDefinitions.PrescriptionEdit);
             StateManager.Remove(KeyValueDefinitions.PrescriptionEdit);
             isEdit = !string.IsNullOrEmpty(prescription.Name);
         }
@@ -36,6 +36,7 @@ namespace Safety_app.ViewModels.Prescriptions
         {
             StateManager.StoreProperties<Prescription>(Safety_app.BOD.KeyValueDefinitions.Prescription, prescription);
             await Shell.Current.GoToAsync($"{nameof(Views.MainViews.Schedules.PrescriptionSchedule)}");
+            await Shell.Current.Navigation.PushAsync(new Views.MainViews.Schedules.PrescriptionSchedule(), true);
 
         }
 
@@ -55,7 +56,8 @@ namespace Safety_app.ViewModels.Prescriptions
             {
                 await App.Database.GetPrescriptionOperator().saveAsync(prescription);
             }
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.Navigation.PopToRootAsync(true);
+            // await Shell.Current.GoToAsync("..");
         }
     }
 }
