@@ -1,32 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Safety_app.Views.MainViews.Home.index">
-  <ListView x:Name="MyListView"
-            ItemsSource="{Binding Items}"
-            ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <TextCell Text="{Binding .}" />
-        </DataTemplate>
-    </ListView.ItemTemplate>
-    
-    <!--Custom View Cells-->
-    <!--
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout>
-            <Label Text="{Binding Text}" 
-                   Style="{DynamicResource ListItemTextStyle}" />
-            <Label Text="{Binding Detail}" 
-                   Style="{DynamicResource ListItemDetailTextStyle}"/>
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-    -->
-  </ListView>
+             x:Class="Safety_app.Views.MainViews.Home.index"
+             Title="Home">
+    <ContentPage.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="Title"></Setter>
+            <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            <Setter Property="Padding" Value="10,20,10,20"></Setter>
+            <Setter Property="Margin" Value="0,10,0,10"></Setter>
+            <Setter Property="BackgroundColor" Value="Gray"></Setter>
+            <Setter Property="WidthRequest" Value="350"></Setter>
+
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Button Text="Prescriptions" >
+                
+            </Button>
+            <Button Text="Schedules" >
+            </Button>
+            <Button Text="Drugs" >
+            </Button>
+            <Button Text="Settings" >
+
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

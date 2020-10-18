@@ -14,10 +14,10 @@ namespace Safety_app.Helpers
         {
             await Application.Current.MainPage.DisplayAlert(title, details, "OK");
         }
-        public static void ActivateSchedule(Shedule shedule)
+        public static void ActivateSchedule(Shedule shedule, long miliseconds)
         {
             ITaskSchedular taskSchedular = DependencyService.Get<ITaskSchedular>();
-            taskSchedular.TimerAddSchedule(shedule);
+            taskSchedular.TimerAddSchedule(shedule,miliseconds);
 
         }
         public static void DeActivateSchedule(Shedule shedule)

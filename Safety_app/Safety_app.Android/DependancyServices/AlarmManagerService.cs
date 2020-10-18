@@ -15,7 +15,7 @@ namespace Safety_app.Droid.DependancyServices
     {
 
         [Obsolete]
-        public void TimerAddSchedule(Shedule shedule)
+        public void TimerAddSchedule(Shedule shedule,long miliseconds)
         {
             Intent alarmIntent = new Intent(Forms.Context, typeof(ScheduleReceiver));
             alarmIntent.PutExtra("Id", shedule.Id);
@@ -23,15 +23,10 @@ namespace Safety_app.Droid.DependancyServices
 
             PendingIntent pendingIntent = PendingIntent.GetBroadcast(Forms.Context, 0, alarmIntent, PendingIntentFlags.UpdateCurrent);
             AlarmManager alarmManager = (AlarmManager)Forms.Context.GetSystemService(Context.AlarmService);
-            alarmManager.Set(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + 5 * 1000, pendingIntent);
-            Notification();
+            alarmManager.Set(AlarmType.RtcWakeup, miliseconds, pendingIntent);
+    
         }
 
-        [Obsolete]
-        private void Notification()
-        {
-
-        }
 
         [Obsolete]
         public void TimerDeactivateSchedule(Shedule shedule)

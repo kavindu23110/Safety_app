@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.OS;
 using Safety_app.Droid.NotificationHandlers;
+using Safety_app.Helpers;
 using System;
 
 [assembly: Permission(Name = "PACKAGEIDENTIFIER.permission.C2D_MESSAGE")]
@@ -34,7 +35,7 @@ namespace Safety_app.Droid.BroadcastReciecvers
             var ScheduleName = intent.Extras.Get("Name");
             if (ScheduleId != null)
             {
-
+                new ScheduleTimeCalculation().ReAddScheduleCalculation((object)ScheduleId);
                 NotificationHandler handler = new NotificationHandler();
                 handler.BuildNotification((string)ScheduleName, "Prescription time is began.Tap to Continue", (string)ScheduleId);
 

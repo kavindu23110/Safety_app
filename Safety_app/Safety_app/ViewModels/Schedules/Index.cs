@@ -26,8 +26,6 @@ namespace Safety_app.ViewModels.Schedules
         private async void OnScheduleEditAsync(object obj)
         {
 
-
-            StaticFunctions.ActivateSchedule(new Models.Shedule());
             var schedule = (Models.Shedule)obj;
             StateManager.StoreProperties<Models.Shedule>(KeyValueDefinitions.ScheduleEdit, schedule);
             await Shell.Current.GoToAsync($"{nameof(AddEditSchedule)}");
