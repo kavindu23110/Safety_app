@@ -13,6 +13,7 @@ namespace Safety_app.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            string ScheduleId = Intent.GetStringExtra("ScheduleId");
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

@@ -23,7 +23,6 @@ namespace Safety_app.Views.MainViews.Home
                 "Item 5"
             };
 
-            MyListView.ItemsSource = Items;
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Safety_app.Views.MainViews.NotificationView.DrugView">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Label Text="sdhdfjgkjghfrdyhjtygjutgfukjhfgkghklhklh,k"></Label>
+          <!-- <ListView ItemsSource="{Binding lstSelectedDrugs }"   
+                      Margin="0,20,0,20">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+
+                            <Grid>
+                                <Grid.RowDefinitions >
+                                    <RowDefinition  ></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                    <ColumnDefinition Width="*"   ></ColumnDefinition>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                    <ColumnDefinition Width="50"  ></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{StaticResource imgdrug}" 
+                                       Grid.RowSpan="2" Grid.Column="0" 
+                                       HorizontalOptions="StartAndExpand" 
+                                       Margin="20,0,0,0"></Image>
+
+                                <Label Text="{Binding  Name}" 
+                                       Grid.Column="1"
+                                       Margin="20,0,0,0" 
+                                       Grid.Row="0"   
+                                       FontAttributes="Bold" 
+                                       FontSize="Medium"  
+                                       HorizontalOptions="StartAndExpand" 
+                                       TextColor="Black"></Label>
+
+                                <Label Text="{Binding  Quantity}" 
+                                       Grid.Column="1"  
+                                       Margin="20,0,0,0" 
+                                       Grid.Row="1"  
+                                       HorizontalOptions="StartAndExpand" 
+                                       FontSize="Default" ></Label>
+
+
+
+
+                            </Grid>
+
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

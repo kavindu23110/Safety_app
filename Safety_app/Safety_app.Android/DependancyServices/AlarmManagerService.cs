@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Support.V4.App;
 using Safety_app.DependancyService;
 using Safety_app.Droid.BroadcastReciecvers;
 using Safety_app.Models;

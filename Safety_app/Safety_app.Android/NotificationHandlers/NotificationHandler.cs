@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
-using Android.Gms.Common.Util;
-using Android.Graphics;
 using Android.Media;
-using Android.OS;
-using Android.Runtime;
 using Android.Support.V4.App;
-using Android.Views;
-using Android.Widget;
+using System;
 
 namespace Safety_app.Droid.NotificationHandlers
 {
@@ -33,18 +23,13 @@ namespace Safety_app.Droid.NotificationHandlers
         public void BuildNotification(string title, string text, string scheduleId)
         {
             PendingIntent pendingIntent = BulildActionToStart(scheduleId);
-            BuildBackStack( pendingIntent);
             Notification builder = BuildNotificationBuilder(title, text, pendingIntent);
             NotificationChannel channel = BuildNotificationChannel("MedicChannel");
 
             BuildNotificationManager(channel, builder);
         }
 
-        private void BuildBackStack(PendingIntent pendingIntent)
-        {
-     
 
-        }
 
         private PendingIntent BulildActionToStart(string scheduleId)
         {

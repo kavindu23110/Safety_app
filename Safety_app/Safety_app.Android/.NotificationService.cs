@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Safety_app.Droid.BroadcastReciecvers;
 
 namespace Safety_app.Droid
 {
-   public class NotificationService : Service
+    public class NotificationService : Service
     {
         private static BroadcastReceiver notificationReceiver;
 
