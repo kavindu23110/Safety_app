@@ -12,7 +12,7 @@ namespace Safety_app.Views.MainViews.NotificationView
         public DrugView()
         {
             InitializeComponent();
-            BindingContext = new ViewModels.Notification.NotificationViewModel();
+     
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.OS;
 using Safety_app.DependancyService;
 using Safety_app.Droid.BroadcastReciecvers;
 using Safety_app.Models;
@@ -15,7 +14,7 @@ namespace Safety_app.Droid.DependancyServices
     {
 
         [Obsolete]
-        public void TimerAddSchedule(Shedule shedule,long miliseconds)
+        public void TimerAddSchedule(Shedule shedule, long miliseconds)
         {
             Intent alarmIntent = new Intent(Forms.Context, typeof(ScheduleReceiver));
             alarmIntent.PutExtra("Id", shedule.Id);
@@ -24,7 +23,7 @@ namespace Safety_app.Droid.DependancyServices
             PendingIntent pendingIntent = PendingIntent.GetBroadcast(Forms.Context, 0, alarmIntent, PendingIntentFlags.UpdateCurrent);
             AlarmManager alarmManager = (AlarmManager)Forms.Context.GetSystemService(Context.AlarmService);
             alarmManager.Set(AlarmType.RtcWakeup, miliseconds, pendingIntent);
-    
+
         }
 
 

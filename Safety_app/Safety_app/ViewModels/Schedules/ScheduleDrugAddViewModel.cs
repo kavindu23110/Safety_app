@@ -1,6 +1,7 @@
 ﻿using Safety_app.BOD;
 using Safety_app.Helpers;
 using Safety_app.Models;
+using Safety_app.Views.MainViews.NotificationView;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -64,7 +65,6 @@ namespace Safety_app.ViewModels.Schedules
                 {
                     current.IsActive = 0;
                     await App.Database.GetDrugSchedulePrescriptionOperator().updateAsync(current);
-
                 }
 
                 await App.Database.GetDrugSchedulePrescriptionOperator().saveAsync(SetDrugSchedulePrescription(drug));
@@ -84,8 +84,20 @@ namespace Safety_app.ViewModels.Schedules
 
         }
 
-        private void OnAddNewDrug(object obj)
+        private async void OnAddNewDrug(object obj)
         {
+     
+            var Currentdrugwithothers = await App.Database.GetDrugSchedulePrescriptionOperator()
+                 .FindAsync(p => p.IsActive == 1 && p.ScheduleId!=currentSchedule && p.PrescriptionId!=currentPrescription && p.DrugId== ((Models.Drugs)obj).Id);
+
+
+            if (Currentdrugwithothers.Count() > 0)
+            {
+
+                await Application.Current.MainPage.Navigation.PushModalAsync(new DrugConflicts(Currentdrugwithothers));
+                return;
+            }
+
             if (obj != null)
             {
                 lstScheduleDrugs.Add((Models.Drugs)obj);

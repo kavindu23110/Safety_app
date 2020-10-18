@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Safety_app.Views.MainViews.NotificationView.DrugConflicts">
+    <StackLayout Margin="20">
+  
+        
+    
+        <Grid BackgroundColor="#D6FFFFFF">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Source="warning.gif" 
+                   HorizontalOptions="End"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Grid.RowSpan="2"></Image>
+
+            <Label Text="DRUG CONFLICTS"
+               HorizontalOptions="CenterAndExpand"
+               TextType="Html"
+               FontSize="Title"
+              Grid.Column="1"
+                   Grid.Row="0"
+               
+               ></Label>
+
+            <Label Text="Please Contact following Doctors"
+               HorizontalOptions="CenterAndExpand"
+               TextType="Html"
+               FontSize="Subtitle"
+               Grid.Column="1"
+               Grid.Row="1"
+            ></Label>
+        </Grid>
+        
+        
+        <ListView x:Name="MyListView"
+                  BackgroundColor="#E5EFEC"
+                 Margin="0,10,0,10"
+                  VerticalScrollBarVisibility="Never"
+                  HasUnevenRows="True"
+                  RowHeight="100"
+                  
+            ItemsSource="{Binding lstNotification}"
+            CachingStrategy="RecycleElement">
+
+    
+           
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <ViewCell   >
+                        <Frame Margin="10,10,10,10">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition ></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition ></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="Prescription " 
+                                   Grid.Row="0"
+                                       FontAttributes="Bold"
+                                   FontSize="Subtitle"
+                                           HorizontalOptions="StartAndExpand"
+                                   Grid.Column="0"></Label>
+
+                                <Label Text="{Binding Prescription.Name}" 
+                                   Grid.Row="0" 
+                                   Grid.Column="1"></Label>
+
+                                <Label Text="Doctor " 
+                                   Grid.Row="1"
+                                           HorizontalOptions="StartAndExpand"
+                                       FontAttributes="Bold"
+                                   FontSize="Subtitle"
+                                   Grid.Column="0"></Label>
+
+                                <Label Text="{Binding Prescription.Doctorname}" 
+                                   Grid.Row="1" 
+                                           HorizontalOptions="StartAndExpand"
+                                   Grid.Column="1"></Label>
+
+                                <Label Text="Drug name" 
+                                   FontAttributes="Bold"  
+                                   HorizontalOptions="StartAndExpand"
+                                   Grid.Row="2"
+                                   FontSize="Subtitle"
+                                   Grid.Column="0"></Label>
+
+                                <Label Text="{Binding Drugs.Name}" 
+                                   Grid.Row="2" 
+                                   HorizontalOptions="StartAndExpand"
+                                   Grid.Column="1"></Label>
+
+                                <Label Text="Quantity" 
+                                   FontAttributes="Bold"
+                                   Grid.Row="3"
+                                   HorizontalOptions="StartAndExpand"
+                                   FontSize="Subtitle"
+                                   Grid.Column="0"></Label>
+
+                                <Label Text="{Binding DrugSchedulePrescription.Quantity}" 
+                                   HorizontalOptions="StartAndExpand"
+                                   Grid.Row="3" 
+                                   Grid.Column="1"></Label>
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+        <Button Text="Close"  Command="{Binding closeCommand}" Margin="0,10,0,10"></Button>
+    </StackLayout>
+
+</ContentPage>

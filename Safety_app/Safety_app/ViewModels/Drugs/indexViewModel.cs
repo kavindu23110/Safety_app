@@ -28,7 +28,7 @@ namespace Safety_app.ViewModels.Drugs
 
             addnewDrug = new Command(OnAddNewDrugAsync);
             AddSelectedDrug = new Command(OnAddSelectedDrug);
-            SaveDrugs = new Command(OnSaveDrugs);
+            SaveDrugs = new Command(OnSaveDrugsAsync);
             RemoveDrugsFromListCommand = new Command(OnRemoveDrugsFromListCommand);
             DrugEditCommand = new Command(OnDrugEditAsync);
 
@@ -52,10 +52,10 @@ namespace Safety_app.ViewModels.Drugs
             }
         }
 
-        private void OnSaveDrugs(object obj)
+        private async void OnSaveDrugsAsync(object obj)
         {
             StateManager.StoreProperties<ObservableCollection<Models.Drugs>>(KeyValueDefinitions.lstselecteddrugs, lstSelectedDrugs);
-            AppShell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("..");
         }
 
         private void OnAddSelectedDrug(object obj)

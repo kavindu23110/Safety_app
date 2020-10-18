@@ -19,6 +19,7 @@ namespace Safety_app
             Routing.RegisterRoute(nameof(ScheduleDrugAdd), typeof(ScheduleDrugAdd));
             Routing.RegisterRoute(nameof(PrescriptionSchedule), typeof(PrescriptionSchedule));
             Routing.RegisterRoute(nameof(DrugView), typeof(DrugView));
+            Routing.RegisterRoute(nameof(DrugConflicts), typeof(DrugConflicts));
             Routing.RegisterRoute("Scheduleindex", typeof(Views.MainViews.Schedules.index));
 
 

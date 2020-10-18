@@ -35,7 +35,7 @@ namespace Safety_app.ViewModels.Prescriptions
         private async void onAddEditSchedules(object obj)
         {
             StateManager.StoreProperties<Prescription>(Safety_app.BOD.KeyValueDefinitions.Prescription, prescription);
-            await Shell.Current.GoToAsync($"{nameof(Views.MainViews.Schedules.PrescriptionSchedule)}");
+           // await Shell.Current.GoToAsync($"{nameof(Views.MainViews.Schedules.PrescriptionSchedule)}");
             await Shell.Current.Navigation.PushAsync(new Views.MainViews.Schedules.PrescriptionSchedule(), true);
 
         }
